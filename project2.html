@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details | Qolbun Halim Hidayatulloh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navbar (Simplified) -->
+    <header class="main-header">
+        <div class="container header-inner">
+            <div class="logo">
+                <a href="index.html">Qolbun Halim Hidayatulloh</a>
+            </div>
+            <nav class="main-menu">
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#projects">Back to Projects</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle menu"><i class="ri-menu-line"></i></button>
+        </div>
+    </header>
+
+    <main>
+        <section class="container">
+            <!-- Hero Title -->
+            <div class="project-hero" data-aos="fade-down">
+                <h1>Penanggungan Summit</h1> <!-- GANTI JUDUL PROJECT DI SINI -->
+                <div class="project-meta">
+                    <span><i class="ri-calendar-line"></i> 2024</span>
+                    <span><i class="ri-code-box-line"></i> Open Source</span>
+                    <span><i class="ri-tools-line"></i> AI Integration</span>
+                </div>
+            </div>
+
+            <!-- Main Project Image -->
+            <div class="project-image-container" data-aos="zoom-in">
+                <img src="foto/halim.jpg" alt="Project Screenshot"> <!-- GANTI GAMBAR PROJECT ANDA DI SINI -->
+            </div>
+
+            <!-- Content Area -->
+            <div class="project-content" data-aos="fade-up">
+                <h2>Overview</h2>
+                <p>
+                    <!-- GANTI DESKRIPSI PROJECT DI SINI -->
+                    Project ini adalah sebuah sistem cerdas yang mengintegrasikan AI Customer Service untuk membantu
+                    pendaki Gunung Penanggungan.
+                    Sistem ini dapat memberikan informasi cuaca, rute, dan tips keselamatan secara real-time.
+                </p>
+
+                <h2>Key Features</h2>
+                <p>
+                    <!-- GANTI FITUR UTAMA DI SINI -->
+                    - Real-time AI Chatbot<br>
+                    - Interactive Maps<br>
+                    - Emergency SOS System
+                </p>
+
+                <h2>Technologies Used</h2>
+                <div class="tech-stack">
+                    <!-- GANTI TEKNOLOGI YANG DIPAKAI DI SINI -->
+                    <span class="tech-badge">JavaScript</span>
+                    <span class="tech-badge">Java</span>
+                    <span class="tech-badge">C++</span>
+                    <span class="tech-badge">LARAVEL</span>
+                    <span class="tech-badge">BOOTSTRAP</span>
+                    <span class="tech-badge">MYSQL</span>
+                </div>
+
+                <div class="hero-btns" style="text-align: center; margin-top: 40px;">
+                    <a href="#" class="theme-btn" target="_blank">View Live Demo <i
+                            class="ri-external-link-line"></i></a> <!-- LINK DEMO -->
+                    <a href="#" class="theme-btn" target="_blank"
+                        style="margin-left: 10px; border-color: var(--accent-secondary); color: var(--accent-secondary);">Source
+                        Code <i class="ri-github-line"></i></a> <!-- LINK PROJEK -->
+                </div>
+            </div>
+
+            <div class="back-btn-container">
+                <a href="index.html#projects" class="theme-btn"><i class="ri-arrow-left-line"></i> Kembali ke
+                    Portfolio</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-bottom">
+            <p>©Copyright <a href="index.html">Your Name AP</a> All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div class="progress-wrap cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="ri-arrow-up-s-line"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            duration: 1000,
+        });
+
+        // Scroll to top button logic (copied from script.js for standalone functionality)
+        const scrollUp = document.querySelector('.progress-wrap');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollUp.classList.add('active');
+            } else {
+                scrollUp.classList.remove('active');
+            }
+        });
+
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mainMenu = document.querySelector('.main-menu');
+        if (menuToggle && mainMenu) {
+            menuToggle.addEventListener('click', () => {
+                mainMenu.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (mainMenu.classList.contains('active')) {
+                    icon.classList.remove('ri-menu-line');
+                    icon.classList.add('ri-close-line');
+                } else {
+                    icon.classList.remove('ri-close-line');
+                    icon.classList.add('ri-menu-line');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

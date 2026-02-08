@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qolbun Halim Hidayatulloh | Portfolio Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> <!-- AOS Animation CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container header-inner">
+            <div class="logo">
+                <a href="#home">Qolbun Halim Hidayatulloh</a>
+            </div>
+            <nav class="main-menu">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Proyek</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-social">
+                <a href="https://www.instagram.com/qolbunhalim_46?igsh=MTFiN2QyNmJzMTV3Mg==" target="_blank"
+                    area-label="Instagram"><i class="ri-instagram-line"></i></a>
+                <a href="https://www.linkedin.com/in/qolbun-halim-1b67a3371?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                    target="_blank" area-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                <a href="https://github.com/byeone001" target="_blank" area-label="GitHub"><i
+                        class="ri-github-fill"></i></a>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle menu"><i class="ri-menu-line"></i></button>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero-area container">
+            <div class="row">
+                <div class="col-left" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="profile-image">
+                        <img src="foto/halim.jpg" alt="Profile">
+                        <div class="glitch-effect"></div>
+                    </div>
+                </div>
+                <div class="col-right" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="hero-content">
+                        <h1>Hello, I'm <span class="accent-text">Qolbun Halim</span></h1>
+                        <h2>I am a <span class="typing-text"></span></h2>
+                        <p class="hero-description">
+                            Berdedikasi untuk mengembangkan otomatisasi cerdas, sistem deteksi, dan solusi AI yang
+                            inovatif.
+                        </p>
+                        <div class="hero-btns">
+                            <a href="#" class="theme-btn">Lihat CV <i class="ri-download-line"></i></a>
+                            <!-- GANTI DENGAN LINK CV/RESUME ANDA DI ATAS (href="#") -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects-area container">
+            <h2 data-aos="fade-up">Proyek Saya</h2>
+            <div class="projects-grid">
+                <a href="project1.html" class="portfolio-box" data-aos="zoom-in" data-aos-delay="100"
+                    style="display: block; text-decoration: none;">
+                    <img src="foto/halim.jpg" alt="Project 1">
+                    <span class="portfolio-category">Open Source</span>
+                    <div class="portfolio-caption">
+                        <h3>Penanggungan Summit Explore with AI Customer Service</h3>
+                    </div>
+                </a>
+                <a href="project2.html" class="portfolio-box" data-aos="zoom-in" data-aos-delay="200"
+                    style="display: block; text-decoration: none;">
+                    <img src="foto/halim.jpg" alt="Project 2">
+                    <span class="portfolio-category">Open Source</span>
+                    <div class="portfolio-caption">
+                        <h3>Caesar Chiper Criptografy</h3>
+                    </div>
+                </a>
+                <a href="project1.html" class="portfolio-box" data-aos="zoom-in" data-aos-delay="300"
+                    style="display: block; text-decoration: none;">
+                    <img src="foto/halim.jpg" alt="Project 3">
+                    <span class="portfolio-category">Open Source</span>
+                    <div class="portfolio-caption">
+                        <h3>Website for Smart Robot Car ESP32</h3>
+                    </div>
+                </a>
+                <a href="project1.html" class="portfolio-box" data-aos="zoom-in" data-aos-delay="400"
+                    style="display: block; text-decoration: none;">
+                    <img src="foto/halim.jpg" alt="Project 4">
+                    <span class="portfolio-category">Open Source</span>
+                    <div class="portfolio-caption">
+                        <h3>Klasifikasi Gambar Gunting-batu-kertas</h3>
+                    </div>
+                </a>
+                <a href="project1.html" class="portfolio-box" data-aos="zoom-in" data-aos-delay="500"
+                    style="display: block; text-decoration: none;">
+                    <img src="foto/halim.jpg" alt="Project 5">
+                    <span class="portfolio-category">Not Open Source</span>
+                    <div class="portfolio-caption">
+                        <h3>Program Visi Komputer untuk Robot Sepak Bola</h3>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="skills" class="skills-area container" data-aos="fade-up">
+            <h2>My Technical Skills</h2>
+            <div class="skills-scroller">
+                <div class="scroller-inner">
+                    <!-- Original Items -->
+                    <img src="https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"
+                        alt="Python">
+                    <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white"
+                        alt="TensorFlow">
+                    <img src="https://img.shields.io/badge/OpenCV-239120?style=for-the-badge&logo=opencv&logoColor=white"
+                        alt="OpenCV">
+                    <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white"
+                        alt="C++">
+                    <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"
+                        alt="Git">
+                    <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white"
+                        alt="Flutter">
+                    <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"
+                        alt="HTML">
+                    <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"
+                        alt="CSS">
+                    <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"
+                        alt="Figma">
+
+                    <!-- Duplicate for infinite scroll (HIDDEN FROM SCREEN READERS) -->
+                    <img src="https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"
+                        alt="Python" aria-hidden="true">
+                    <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white"
+                        alt="TensorFlow" aria-hidden="true">
+                    <img src="https://img.shields.io/badge/OpenCV-239120?style=for-the-badge&logo=opencv&logoColor=white"
+                        alt="OpenCV" aria-hidden="true">
+                    <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white"
+                        alt="C++" aria-hidden="true">
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="call-to-action-area" data-aos="flip-up">
+            <div class="container text-center">
+                <h2>Learn More About Me?</h2>
+                <p>Curious to delve deeper into my projects and experiences? Explore my portfolio and discover more
+                    about my work by clicking the button below.</p>
+                <div class="hero-btns">
+                    <a href="#" class="theme-btn call-to-action-button">Explore Now <i
+                            class="ri-compass-3-line"></i></a> <!-- GANTI DENGAN LINK PROJECT/KONTAK ANDA -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-bottom">
+            <p>©Copyright <a href="#">Your Name AP</a> All Rights Reserved.</p>
+            <!-- GANTI DENGAN LINK WEBSITE/MEDSOS ANDA -->
+        </div>
+    </footer>
+
+    <div class="progress-wrap cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="ri-arrow-up-s-line"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script> <!-- Typed.js -->
+    <script src="script.js"></script>
+</body>
+
+</html>
