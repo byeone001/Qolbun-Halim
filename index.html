@@ -1,183 +1,258 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qolbun Halim Hidayatulloh | Portfolio Website</title>
+    <title>Qolbun Halim Hidayatulloh | Frontend Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> <!-- AOS Animation CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <header class="main-header">
-        <div class="container header-inner">
-            <div class="logo">
-                <a href="#home">Qolbun Halim Hidayatulloh</a>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">QH</div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-            <nav class="main-menu">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Proyek</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="header-social">
-                <a href="https://www.instagram.com/qolbunhalim_46?igsh=MTFiN2QyNmJzMTV3Mg==" target="_blank"
-                    area-label="Instagram"><i class="ri-instagram-line"></i></a>
-                <a href="https://www.linkedin.com/in/qolbun-halim-1b67a3371?utm_source=share_via&utm_content=profile&utm_medium=member_android"
-                    target="_blank" area-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
-                <a href="https://github.com/byeone001" target="_blank" area-label="GitHub"><i
-                        class="ri-github-fill"></i></a>
-            </div>
-            <button class="menu-toggle" aria-label="Toggle menu"><i class="ri-menu-line"></i></button>
         </div>
-    </header>
+    </nav>
 
-    <main>
-        <section id="home" class="hero-area container">
-            <div class="row">
-                <div class="col-left" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="profile-image">
-                        <img src="foto/halim.jpg" alt="Profile">
-                        <div class="glitch-effect"></div>
-                    </div>
-                </div>
-                <div class="col-right" data-aos="fade-left" data-aos-duration="1000">
-                    <div class="hero-content">
-                        <h1>Hello, I'm <span class="accent-text">Qolbun Halim</span></h1>
-                        <h2>I am a <span class="typing-text"></span></h2>
-                        <p class="hero-description">
-                            Berdedikasi untuk mengembangkan otomatisasi cerdas, sistem deteksi, dan solusi AI yang
-                            inovatif.
-                        </p>
-                        <div class="hero-btns">
-                            <a href="#" class="theme-btn">Lihat CV <i class="ri-download-line"></i></a>
-                            <!-- GANTI DENGAN LINK CV/RESUME ANDA DI ATAS (href="#") -->
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="status-badge">
+                <span class="status-dot"></span> Available for work
+            </div>
+            
+            <h1 class="hero-title">
+                <span class="word">Frontend</span>
+                <span class="word">Developer</span>
+            </h1>
+
+            <div class="hero-divider"></div>
+
+            <p class="hero-description">
+                Menciptakan website modern dengan tampilan clean, responsif, dan elegan. Mengubah ide dan desain menjadi pengalaman digital yang menarik dan mudah digunakan.
+            </p>
+
+            <div class="hero-skills">
+                <span class="skill-badge">HTML/CSS</span>
+                <span class="skill-badge">JavaScript</span>
+                <span class="skill-badge">Responsive Design</span>
+            </div>
+
+            <div class="hero-cta">
+                <p><a href="#portfolio">↓ Explore my work below</a></p>
+                <p><a href="#contact">↗ Open to collaboration</a></p>
+            </div>
+
+            <div class="scroll-indicator">
+                <p>Scroll</p>
+                <div class="scroll-arrow">↓</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="section-header">
+            <h2>Portfolio Showcase</h2>
+            <p>Explore my journey through projects, certifications, and technical expertise.</p>
+        </div>
+
+        <div class="portfolio-tabs">
+            <button class="tab-btn active" data-tab="projects">Projects</button>
+            <button class="tab-btn" data-tab="certificates">Certificates</button>
+            <button class="tab-btn" data-tab="tech-stack">Tech Stack</button>
+        </div>
+
+        <!-- Projects Tab -->
+        <div class="tab-content active" id="projects-tab">
+            <div class="projects-grid">
+                <a href="project1.html" class="project-card">
+                    <div class="project-image">
+                        <img src="foto/halim.jpg" alt="Project 1">
+                        <div class="project-overlay">
+                            <p>View Details</p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
+                    <div class="project-info">
+                        <h3>AI Customer Service Summit</h3>
+                        <p class="project-category">Open Source</p>
+                    </div>
+                </a>
 
-        <section id="projects" class="projects-area container">
-            <h2 data-aos="fade-up">Proyek Saya</h2>
-            <div class="projects-grid">
-                <a href="project1.html" class="portfolio-box" data-aos="zoom-in" data-aos-delay="100"
-                    style="display: block; text-decoration: none;">
-                    <img src="foto/halim.jpg" alt="Project 1">
-                    <span class="portfolio-category">Open Source</span>
-                    <div class="portfolio-caption">
-                        <h3>Penanggungan Summit Explore with AI Customer Service</h3>
+                <a href="project2.html" class="project-card">
+                    <div class="project-image">
+                        <img src="foto/halim.jpg" alt="Project 2">
+                        <div class="project-overlay">
+                            <p>View Details</p>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Caesar Cipher Cryptography</h3>
+                        <p class="project-category">Open Source</p>
                     </div>
                 </a>
-                <a href="project2.html" class="portfolio-box" data-aos="zoom-in" data-aos-delay="200"
-                    style="display: block; text-decoration: none;">
-                    <img src="foto/halim.jpg" alt="Project 2">
-                    <span class="portfolio-category">Open Source</span>
-                    <div class="portfolio-caption">
-                        <h3>Caesar Chiper Criptografy</h3>
+
+                <a href="project1.html" class="project-card">
+                    <div class="project-image">
+                        <img src="foto/halim.jpg" alt="Project 3">
+                        <div class="project-overlay">
+                            <p>View Details</p>
+                        </div>
                     </div>
-                </a>
-                <a href="project1.html" class="portfolio-box" data-aos="zoom-in" data-aos-delay="300"
-                    style="display: block; text-decoration: none;">
-                    <img src="foto/halim.jpg" alt="Project 3">
-                    <span class="portfolio-category">Open Source</span>
-                    <div class="portfolio-caption">
-                        <h3>Website for Smart Robot Car ESP32</h3>
-                    </div>
-                </a>
-                <a href="project1.html" class="portfolio-box" data-aos="zoom-in" data-aos-delay="400"
-                    style="display: block; text-decoration: none;">
-                    <img src="foto/halim.jpg" alt="Project 4">
-                    <span class="portfolio-category">Open Source</span>
-                    <div class="portfolio-caption">
-                        <h3>Klasifikasi Gambar Gunting-batu-kertas</h3>
-                    </div>
-                </a>
-                <a href="project1.html" class="portfolio-box" data-aos="zoom-in" data-aos-delay="500"
-                    style="display: block; text-decoration: none;">
-                    <img src="foto/halim.jpg" alt="Project 5">
-                    <span class="portfolio-category">Not Open Source</span>
-                    <div class="portfolio-caption">
-                        <h3>Program Visi Komputer untuk Robot Sepak Bola</h3>
+                    <div class="project-info">
+                        <h3>Smart Robot Car ESP32</h3>
+                        <p class="project-category">IoT Project</p>
                     </div>
                 </a>
             </div>
-        </section>
-
-        <section id="skills" class="skills-area container" data-aos="fade-up">
-            <h2>My Technical Skills</h2>
-            <div class="skills-scroller">
-                <div class="scroller-inner">
-                    <!-- Original Items -->
-                    <img src="https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"
-                        alt="Python">
-                    <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white"
-                        alt="TensorFlow">
-                    <img src="https://img.shields.io/badge/OpenCV-239120?style=for-the-badge&logo=opencv&logoColor=white"
-                        alt="OpenCV">
-                    <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white"
-                        alt="C++">
-                    <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"
-                        alt="Git">
-                    <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white"
-                        alt="Flutter">
-                    <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"
-                        alt="HTML">
-                    <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"
-                        alt="CSS">
-                    <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"
-                        alt="Figma">
-
-                    <!-- Duplicate for infinite scroll (HIDDEN FROM SCREEN READERS) -->
-                    <img src="https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"
-                        alt="Python" aria-hidden="true">
-                    <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white"
-                        alt="TensorFlow" aria-hidden="true">
-                    <img src="https://img.shields.io/badge/OpenCV-239120?style=for-the-badge&logo=opencv&logoColor=white"
-                        alt="OpenCV" aria-hidden="true">
-                    <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white"
-                        alt="C++" aria-hidden="true">
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="call-to-action-area" data-aos="flip-up">
-            <div class="container text-center">
-                <h2>Learn More About Me?</h2>
-                <p>Curious to delve deeper into my projects and experiences? Explore my portfolio and discover more
-                    about my work by clicking the button below.</p>
-                <div class="hero-btns">
-                    <a href="#" class="theme-btn call-to-action-button">Explore Now <i
-                            class="ri-compass-3-line"></i></a> <!-- GANTI DENGAN LINK PROJECT/KONTAK ANDA -->
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="main-footer">
-        <div class="container footer-bottom">
-            <p>©Copyright <a href="#">Your Name AP</a> All Rights Reserved.</p>
-            <!-- GANTI DENGAN LINK WEBSITE/MEDSOS ANDA -->
         </div>
+
+        <!-- Certificates Tab -->
+        <div class="tab-content" id="certificates-tab">
+            <div class="certificates-list">
+                <div class="cert-item">
+                    <div class="cert-icon"><i class="ri-award-line"></i></div>
+                    <div class="cert-details">
+                        <h3>Web Development Certification</h3>
+                        <p>Issued by Skillshare - 2024</p>
+                    </div>
+                </div>
+
+                <div class="cert-item">
+                    <div class="cert-icon"><i class="ri-award-line"></i></div>
+                    <div class="cert-details">
+                        <h3>JavaScript Advanced Course</h3>
+                        <p>Issued by Udemy - 2024</p>
+                    </div>
+                </div>
+
+                <div class="cert-item">
+                    <div class="cert-icon"><i class="ri-award-line"></i></div>
+                    <div class="cert-details">
+                        <h3>Responsive Web Design</h3>
+                        <p>Issued by FreeCodeCamp - 2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tech Stack Tab -->
+        <div class="tab-content" id="tech-stack-tab">
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon"><i class="ri-html5-line"></i></div>
+                    <h4>HTML5</h4>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon"><i class="ri-css3-line"></i></div>
+                    <h4>CSS3</h4>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon"><i class="ri-javascript-line"></i></div>
+                    <h4>JavaScript</h4>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon"><i class="ri-react-line"></i></div>
+                    <h4>React</h4>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon"><i class="ri-git-branch-line"></i></div>
+                    <h4>Git</h4>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon"><i class="ri-terminal-line"></i></div>
+                    <h4>Terminal</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section-header">
+            <h2>Contact Me</h2>
+            <p>Have something in mind? Send a message and let's connect.</p>
+        </div>
+
+        <div class="contact-container">
+            <!-- Contact Form -->
+            <div class="contact-form-wrapper">
+                <h3>Hubungi Saya</h3>
+                <p>Feel free to reach out if you want to collaborate, discuss ideas, or simply say hello.</p>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <div class="input-icon"><i class="ri-user-line"></i></div>
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon"><i class="ri-mail-line"></i></div>
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon"><i class="ri-chat-3-line"></i></div>
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="ri-send-plane-2-line"></i> Send Message
+                    </button>
+                </form>
+            </div>
+
+            <!-- Social Links -->
+            <div class="social-wrapper">
+                <p class="social-title">Connect With Me</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/qolbun-halim-1b67a3371" target="_blank" class="social-link">
+                        <div class="social-icon"><i class="ri-linkedin-fill"></i></div>
+                        <div class="social-info">
+                            <h4>LinkedIn</h4>
+                            <p>@linkedin</p>
+                        </div>
+                        <i class="ri-arrow-right-line"></i>
+                    </a>
+
+                    <a href="https://www.instagram.com/qolbunhalim_46" target="_blank" class="social-link">
+                        <div class="social-icon"><i class="ri-instagram-line"></i></div>
+                        <div class="social-info">
+                            <h4>Instagram</h4>
+                            <p>@instagram</p>
+                        </div>
+                        <i class="ri-arrow-right-line"></i>
+                    </a>
+
+                    <a href="https://github.com/byeone001" target="_blank" class="social-link">
+                        <div class="social-icon"><i class="ri-github-fill"></i></div>
+                        <div class="social-info">
+                            <h4>Github</h4>
+                            <p>@github</p>
+                        </div>
+                        <i class="ri-arrow-right-line"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Qolbun Halim Hidayatulloh — All rights reserved.</p>
     </footer>
 
-    <div class="progress-wrap cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-        <i class="ri-arrow-up-s-line"></i>
-    </div>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> <!-- AOS Animation JS -->
-    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script> <!-- Typed.js -->
     <script src="script.js"></script>
 </body>
-
 </html>

@@ -1,103 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Details | Qolbun Halim Hidayatulloh</title>
+    <title>Penanggungan Summit AI | Qolbun Halim</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- Navbar (Simplified) -->
-    <header class="main-header">
-        <div class="container header-inner">
-            <div class="logo">
-                <a href="index.html">Qolbun Halim Hidayatulloh</a>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="index.html" style="text-decoration: none; color: inherit;">QH</a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-            <nav class="main-menu">
-                <ul>
-                    <li><a href="index.html#home">Home</a></li>
-                    <li><a href="index.html#projects">Back to Projects</a></li>
-                </ul>
-            </nav>
-            <button class="menu-toggle" aria-label="Toggle menu"><i class="ri-menu-line"></i></button>
         </div>
-    </header>
+    </nav>
 
-    <main>
-        <section class="container">
-            <!-- Hero Title -->
-            <div class="project-hero" data-aos="fade-down">
-                <h1>Penanggungan Summit</h1> <!-- GANTI JUDUL PROJECT DI SINI -->
-                <div class="project-meta">
+    <main style="padding-top: 80px;">
+        <section style="max-width: 1000px; margin: 0 auto; padding: 4rem 2rem;">
+            <!-- Project Hero -->
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h1 style="font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    Penanggungan Summit AI
+                </h1>
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; color: var(--text-muted);">
                     <span><i class="ri-calendar-line"></i> 2024</span>
                     <span><i class="ri-code-box-line"></i> Open Source</span>
                     <span><i class="ri-tools-line"></i> AI Integration</span>
                 </div>
             </div>
 
-            <!-- Main Project Image -->
-            <div class="project-image-container" data-aos="zoom-in">
-                <img src="foto/halim.jpg" alt="Project Screenshot"> <!-- GANTI GAMBAR PROJECT ANDA DI SINI -->
+            <!-- Project Image -->
+            <div style="margin: 3rem 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border-color);">
+                <img src="foto/halim.jpg" alt="Project" style="width: 100%; height: auto; display: block;">
             </div>
 
-            <!-- Content Area -->
-            <div class="project-content" data-aos="fade-up">
-                <h2>Overview</h2>
-                <p>
-                    <!-- GANTI DESKRIPSI PROJECT DI SINI -->
-                    Project ini adalah sebuah sistem cerdas yang mengintegrasikan AI Customer Service untuk membantu
-                    pendaki Gunung Penanggungan.
-                    Sistem ini dapat memberikan informasi cuaca, rute, dan tips keselamatan secara real-time.
+            <!-- Project Content -->
+            <div style="background: rgba(26, 31, 58, 0.3); backdrop-filter: blur(10px); padding: 2rem; border-radius: 10px; border: 1px solid var(--border-color); margin: 2rem 0;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 1rem;">Overview</h2>
+                <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem;">
+                    Project ini adalah sistem AI Customer Service yang dirancang untuk membantu pendaki Gunung Penanggungan. Sistem ini mengintegrasikan chatbot bertenaga AI yang dapat memberikan informasi cuaca real-time, rekomendasi rute, tips keselamatan, dan emergency assistance.
                 </p>
 
-                <h2>Key Features</h2>
-                <p>
-                    <!-- GANTI FITUR UTAMA DI SINI -->
-                    - Real-time AI Chatbot<br>
-                    - Interactive Maps<br>
-                    - Emergency SOS System
-                </p>
+                <h2 style="font-size: 1.8rem; margin-bottom: 1rem;">Key Features</h2>
+                <ul style="color: var(--text-muted); line-height: 2; margin-bottom: 2rem;">
+                    <li><i class="ri-check-line" style="color: var(--accent-cyan); margin-right: 0.5rem;"></i>Real-time AI Chatbot dengan NLP</li>
+                    <li><i class="ri-check-line" style="color: var(--accent-cyan); margin-right: 0.5rem;"></i>Weather Information Integration</li>
+                    <li><i class="ri-check-line" style="color: var(--accent-cyan); margin-right: 0.5rem;"></i>Interactive Route Maps</li>
+                    <li><i class="ri-check-line" style="color: var(--accent-cyan); margin-right: 0.5rem;"></i>Emergency SOS System</li>
+                </ul>
 
-                <h2>Technologies Used</h2>
-                <div class="tech-stack">
-                    <!-- GANTI TEKNOLOGI YANG DIPAKAI DI SINI -->
-                    <span class="tech-badge">Python</span>
-                    <span class="tech-badge">TensorFlow</span>
-                    <span class="tech-badge">Flask</span>
-                    <span class="tech-badge">React</span>
+                <h2 style="font-size: 1.8rem; margin-bottom: 1rem;">Technologies Used</h2>
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
+                    <span style="padding: 0.5rem 1rem; background: rgba(0, 217, 255, 0.1); border: 1px solid var(--border-color); border-radius: 20px; color: var(--accent-cyan);">Python</span>
+                    <span style="padding: 0.5rem 1rem; background: rgba(0, 217, 255, 0.1); border: 1px solid var(--border-color); border-radius: 20px; color: var(--accent-cyan);">TensorFlow</span>
+                    <span style="padding: 0.5rem 1rem; background: rgba(0, 217, 255, 0.1); border: 1px solid var(--border-color); border-radius: 20px; color: var(--accent-cyan);">Flask</span>
+                    <span style="padding: 0.5rem 1rem; background: rgba(0, 217, 255, 0.1); border: 1px solid var(--border-color); border-radius: 20px; color: var(--accent-cyan);">React</span>
+                    <span style="padding: 0.5rem 1rem; background: rgba(0, 217, 255, 0.1); border: 1px solid var(--border-color); border-radius: 20px; color: var(--accent-cyan);">WebSocket</span>
                 </div>
 
-                <div class="hero-btns" style="text-align: center; margin-top: 40px;">
-                    <a href="#" class="theme-btn" target="_blank">View Live Demo <i
-                            class="ri-external-link-line"></i></a> <!-- LINK DEMO -->
-                    <a href="#" class="theme-btn" target="_blank"
-                        style="margin-left: 10px; border-color: var(--accent-secondary); color: var(--accent-secondary);">Source
-                        Code <i class="ri-github-line"></i></a> <!-- LINK PROJEK -->
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: var(--accent-cyan); color: var(--primary-dark); text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease; margin-right: 1rem;">
+                        <i class="ri-external-link-line"></i> View Live Demo
+                    </a>
+                    <a href="https://github.com/byeone001" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: transparent; color: var(--accent-cyan); border: 2px solid var(--border-color); text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
+                        <i class="ri-github-line"></i> View on GitHub
+                    </a>
                 </div>
             </div>
 
-            <div class="back-btn-container">
-                <a href="index.html#projects" class="theme-btn"><i class="ri-arrow-left-line"></i> Kembali ke
-                    Portfolio</a>
+            <!-- Back Button -->
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="index.html#portfolio" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: transparent; color: var(--accent-cyan); border: 1px solid var(--border-color); text-decoration: none; border-radius: 8px; transition: all 0.3s ease;">
+                    <i class="ri-arrow-left-line"></i> Back to Portfolio
+                </a>
             </div>
         </section>
     </main>
 
-    <footer class="main-footer">
-        <div class="container footer-bottom">
-            <p>©Copyright <a href="index.html">Your Name AP</a> All Rights Reserved.</p>
-        </div>
+    <!-- Footer -->
+    <footer style="padding: 2rem; text-align: center; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: 3rem;">
+        <p>&copy; 2026 Qolbun Halim Hidayatulloh — All rights reserved.</p>
     </footer>
 
-    <div class="progress-wrap cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <script src="script.js"></script>
+</body>
+</html>
         <i class="ri-arrow-up-s-line"></i>
     </div>
 
