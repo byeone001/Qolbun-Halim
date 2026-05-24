@@ -1,163 +1,222 @@
-// ===== HAMBURGER MENU =====
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+// ===== PARTICLE CANVAS =====
+const canvas = document.getElementById('particleCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
 
-if (hamburger) {
-    hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        
-        // Change hamburger icon
-        const spans = hamburger.querySelectorAll('span');
-        if (navMenu.classList.contains('active')) {
-            spans[0].style.transform = 'rotate(45deg) translate(10px, 10px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
-        } else {
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        }
-    });
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
 
-    // Close menu when link is clicked
-    const navLinks = navMenu.querySelectorAll('a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            const spans = hamburger.querySelectorAll('span');
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        });
-    });
+function createParticle() {
+    return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 1.5 + 0.3,
+        speedX: (Math.random() - 0.5) * 0.3,
+        speedY: (Math.random() - 0.5) * 0.3,
+        opacity: Math.random() * 0.5 + 0.1
+    };
 }
 
-// ===== PORTFOLIO TABS =====
-const tabBtns = document.querySelectorAll('.tab-btn');
-const tabContents = document.querySelectorAll('.tab-content');
+for (let i = 0; i < 100; i++) particles.push(createParticle());
 
-tabBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        // Remove active class from all buttons and contents
-        tabBtns.forEach(b => b.classList.remove('active'));
-        tabContents.forEach(content => content.classList.remove('active'));
+function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0,217,255,${p.opacity})`;
+        ctx.fill();
+    });
+    requestAnimationFrame(animateParticles);
+}
+animateParticles();
 
-        // Add active class to clicked button and corresponding content
-        e.target.classList.add('active');
-        const tabId = e.target.getAttribute('data-tab');
-        document.getElementById(`${tabId}-tab`).classList.add('active');
+// ===== CUSTOM CURSOR =====
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top = my + 'px';
+});
+
+function animateCursor() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+document.querySelectorAll('a,button,.skill-tag,.bento-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        ring.style.transform = 'translate(-50%,-50%) scale(1.6)';
+        ring.style.borderColor = 'rgba(0,217,255,0.8)';
+    });
+    el.addEventListener('mouseleave', () => {
+        ring.style.transform = 'translate(-50%,-50%) scale(1)';
+        ring.style.borderColor = 'rgba(0,217,255,0.4)';
     });
 });
 
-// ===== CONTACT FORM =====
-const contactForm = document.getElementById('contactForm');
+// ===== NAVBAR =====
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+    updateActiveNav();
+});
 
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('navMenu');
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
+    const spans = hamburger.querySelectorAll('span');
+    spans[0].style.transform = navMenu.classList.contains('open') ? 'rotate(45deg) translate(5px,5px)' : '';
+    spans[1].style.opacity = navMenu.classList.contains('open') ? '0' : '1';
+    spans[2].style.transform = navMenu.classList.contains('open') ? 'rotate(-45deg) translate(5px,-5px)' : '';
+});
 
-        // Get form values
-        const name = contactForm.querySelector('input[type="text"]').value;
-        const email = contactForm.querySelector('input[type="email"]').value;
-        const message = contactForm.querySelector('textarea').value;
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = '1'; });
+    });
+});
 
-        // Validate form
-        if (name.trim() === '' || email.trim() === '' || message.trim() === '') {
-            alert('Please fill in all fields');
-            return;
-        }
-
-        // Show success message
-        const submitBtn = contactForm.querySelector('.submit-btn');
-        const originalText = submitBtn.innerHTML;
-
-        submitBtn.innerHTML = '<i class="ri-check-line"></i> Message Sent!';
-        submitBtn.style.background = 'var(--accent-cyan)';
-
-        // Reset form
-        contactForm.reset();
-
-        // Reset button after 2 seconds
-        setTimeout(() => {
-            submitBtn.innerHTML = originalText;
-        }, 2000);
+function updateActiveNav() {
+    const sections = document.querySelectorAll('section[id]');
+    let current = '';
+    sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    document.querySelectorAll('.nav-link').forEach(l => {
+        l.classList.toggle('active', l.dataset.section === current);
     });
 }
 
-// ===== SMOOTH SCROLL FOR NAVIGATION =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+// ===== TYPEWRITER =====
+const words = ['Pemimpin Organisasi', 'Developer', 'Problem Solver', 'Inovator'];
+let wi = 0, ci = 0, deleting = false;
+const tw = document.getElementById('typewriter');
+
+function typeEffect() {
+    const word = words[wi];
+    if (!deleting) {
+        tw.textContent = word.substring(0, ci + 1);
+        ci++;
+        if (ci === word.length) { deleting = true; setTimeout(typeEffect, 1800); return; }
+    } else {
+        tw.textContent = word.substring(0, ci - 1);
+        ci--;
+        if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; }
+    }
+    setTimeout(typeEffect, deleting ? 60 : 100);
+}
+setTimeout(typeEffect, 800);
+
+// ===== HERO CARD 3D TILT =====
+const heroCard = document.getElementById('heroCard');
+if (heroCard) {
+    heroCard.addEventListener('mousemove', e => {
+        const rect = heroCard.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        const card = heroCard.querySelector('.hero-card');
+        if (card) card.style.transform = `rotateY(${x * 18}deg) rotateX(${-y * 18}deg)`;
+    });
+    heroCard.addEventListener('mouseleave', () => {
+        const card = heroCard.querySelector('.hero-card');
+        if (card) card.style.transform = 'rotateY(0) rotateX(0)';
+    });
+}
+
+// ===== SCROLL REVEAL =====
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ===== CONTACT FORM =====
+const form = document.getElementById('contactForm');
+const formSuccess = document.getElementById('formSuccess');
+if (form) {
+    form.addEventListener('submit', e => {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const btn = document.getElementById('btnSubmit');
+        btn.innerHTML = '<i class="ri-loader-4-line"></i><span>Mengirim...</span>';
+        btn.disabled = true;
+        btn.style.opacity = '0.7';
+        setTimeout(() => {
+            form.reset();
+            btn.innerHTML = '<i class="ri-send-plane-2-line"></i><span>Kirim Pesan</span>';
+            btn.disabled = false;
+            btn.style.opacity = '1';
+            formSuccess.classList.add('show');
+            setTimeout(() => formSuccess.classList.remove('show'), 4000);
+        }, 1500);
+    });
+}
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
         if (target) {
+            e.preventDefault();
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
 });
 
-// ===== SCROLL ANIMATION =====
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+// ===== TIMELINE ANIMATION =====
+const timelineObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            setTimeout(() => {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }, i * 150);
         }
     });
-}, observerOptions);
+}, { threshold: 0.15 });
 
-// Observe all animated elements
-document.querySelectorAll('.project-card, .cert-item, .tech-item, .social-link').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(el);
+document.querySelectorAll('.timeline-item').forEach(item => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(30px)';
+    item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    timelineObserver.observe(item);
 });
 
-// ===== ACTIVE NAV LINK ON SCROLL =====
-const navLinks = document.querySelectorAll('.nav-menu a');
-const sections = document.querySelectorAll('section');
-
-window.addEventListener('scroll', () => {
-    let current = '';
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
+// ===== BENTO CARD GLOW ON HOVER =====
+document.querySelectorAll('.bento-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.background = `radial-gradient(300px at ${x}px ${y}px, rgba(0,217,255,0.06), rgba(255,255,255,0.02) 80%)`;
     });
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').slice(1) === current) {
-            link.classList.add('active');
-        }
+    card.addEventListener('mouseleave', () => {
+        card.style.background = '';
     });
 });
 
-// ===== PARALLAX EFFECT =====
-window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const hero = document.querySelector('.hero');
-    
-    if (hero && scrollY < window.innerHeight) {
-        hero.style.transform = `translateY(${scrollY * 0.5}px)`;
-    }
+// ===== FOOTER YEAR =====
+document.querySelectorAll('.footer-text').forEach(el => {
+    el.innerHTML = el.innerHTML.replace('2026', new Date().getFullYear() || 2026);
 });
-
-// ===== PAGE LOAD ANIMATION =====
-window.addEventListener('load', () => {
-    // Add animation to elements
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-        heroContent.style.opacity = '1';
-    }
-});
-
-console.log('Portfolio website loaded successfully!');

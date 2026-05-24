@@ -3,254 +3,486 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qolbun Halim Hidayatulloh | Frontend Developer</title>
+    <title>Qolbun Halim Hidayatulloh | Mahasiswa Teknik Informatika UNESA</title>
+    <meta name="description" content="Portfolio pribadi Qolbun Halim Hidayatulloh - Mahasiswa Teknik Informatika Universitas Negeri Surabaya dengan IPK 3,86. Pemimpin, inovatif, dan berprestasi.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="nav-logo">QH</div>
-            <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <div class="nav-logo">
+                <span class="logo-bracket">&lt;</span>QH<span class="logo-bracket">/&gt;</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link" data-section="home">Beranda</a></li>
+                <li><a href="#about" class="nav-link" data-section="about">Tentang</a></li>
+                <li><a href="#skills" class="nav-link" data-section="skills">Keahlian</a></li>
+                <li><a href="#experience" class="nav-link" data-section="experience">Pengalaman</a></li>
+                <li><a href="#education" class="nav-link" data-section="education">Pendidikan</a></li>
+                <li><a href="#contact" class="nav-link" data-section="contact">Kontak</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ===== HERO SECTION ===== -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="status-badge">
-                <span class="status-dot"></span> Available for work
+        <div class="hero-bg-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+
+        <div class="hero-container">
+            <div class="hero-left">
+                <div class="hero-badge fade-up" style="animation-delay:0.1s">
+                    <span class="badge-dot"></span>
+                    <span>Mahasiswa Aktif · IPK 3,86</span>
+                </div>
+
+                <h1 class="hero-name fade-up" style="animation-delay:0.2s">
+                    Qolbun Halim<br>
+                    <span class="name-gradient">Hidayatulloh</span>
+                </h1>
+
+                <div class="hero-typewriter fade-up" style="animation-delay:0.35s">
+                    <span class="typewriter-prefix">Saya seorang </span>
+                    <span class="typewriter-text" id="typewriter"></span>
+                    <span class="typewriter-cursor">|</span>
+                </div>
+
+                <p class="hero-sub fade-up" style="animation-delay:0.45s">
+                    Mahasiswa Teknik Informatika · Universitas Negeri Surabaya
+                </p>
+
+                <div class="hero-cta fade-up" style="animation-delay:0.55s">
+                    <a href="#about" class="btn-primary" id="btnProfile">
+                        <i class="ri-user-3-line"></i>
+                        Lihat Profil Saya
+                    </a>
+                    <a href="#contact" class="btn-secondary" id="btnContact">
+                        <i class="ri-send-plane-line"></i>
+                        Hubungi Saya
+                    </a>
+                </div>
+
+                <div class="hero-stats fade-up" style="animation-delay:0.65s">
+                    <div class="stat-item">
+                        <span class="stat-value">3,86</span>
+                        <span class="stat-label">IPK</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-value">5+</span>
+                        <span class="stat-label">Jabatan</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-value">3+</span>
+                        <span class="stat-label">Bahasa</span>
+                    </div>
+                </div>
             </div>
-            
-            <h1 class="hero-title">
-                <span class="word">Frontend</span>
-                <span class="word">Developer</span>
-            </h1>
 
-            <div class="hero-divider"></div>
-
-            <p class="hero-description">
-                Menciptakan website modern dengan tampilan clean, responsif, dan elegan. Mengubah ide dan desain menjadi pengalaman digital yang menarik dan mudah digunakan.
-            </p>
-
-            <div class="hero-skills">
-                <span class="skill-badge">HTML/CSS</span>
-                <span class="skill-badge">JavaScript</span>
-                <span class="skill-badge">Responsive Design</span>
+            <div class="hero-right fade-up" style="animation-delay:0.3s">
+                <div class="hero-card-wrapper" id="heroCard">
+                    <div class="hero-card">
+                        <div class="card-glow"></div>
+                        <div class="profile-img-wrapper">
+                            <img src="foto/halim.jpg" alt="Qolbun Halim Hidayatulloh" class="profile-img">
+                            <div class="img-ring"></div>
+                        </div>
+                        <div class="floating-badge badge-java">
+                            <i class="ri-code-s-slash-line"></i> Java
+                        </div>
+                        <div class="floating-badge badge-python">
+                            <i class="ri-braces-line"></i> Python
+                        </div>
+                        <div class="floating-badge badge-flutter">
+                            <i class="ri-smartphone-line"></i> Flutter
+                        </div>
+                        <div class="floating-badge badge-git">
+                            <i class="ri-git-branch-line"></i> Git
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <div class="hero-cta">
-                <p><a href="#portfolio">↓ Explore my work below</a></p>
-                <p><a href="#contact">↗ Open to collaboration</a></p>
+        <div class="scroll-down">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
             </div>
-
-            <div class="scroll-indicator">
-                <p>Scroll</p>
-                <div class="scroll-arrow">↓</div>
-            </div>
+            <span>Scroll ke bawah</span>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio">
-        <div class="section-header">
-            <h2>Portfolio Showcase</h2>
-            <p>Explore my journey through projects, certifications, and technical expertise.</p>
-        </div>
+    <!-- ===== ABOUT SECTION ===== -->
+    <section id="about" class="about section-padding">
+        <div class="container">
+            <div class="section-label reveal">— Tentang Saya</div>
+            <h2 class="section-title reveal">Mengenal <span class="gradient-text">Lebih Dekat</span></h2>
 
-        <div class="portfolio-tabs">
-            <button class="tab-btn active" data-tab="projects">Projects</button>
-            <button class="tab-btn" data-tab="certificates">Certificates</button>
-            <button class="tab-btn" data-tab="tech-stack">Tech Stack</button>
-        </div>
-
-        <!-- Projects Tab -->
-        <div class="tab-content active" id="projects-tab">
-            <div class="projects-grid">
-                <a href="project1.html" class="project-card">
-                    <div class="project-image">
-                        <img src="foto/halim.jpg" alt="Project 1">
-                        <div class="project-overlay">
-                            <p>View Details</p>
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <p class="about-intro">
+                        Mahasiswa <strong>Teknik Informatika UNESA</strong> berprestasi dengan IPK <strong class="highlight-text">3,86</strong>. Saya mengombinasikan keunggulan akademik, kepemimpinan strategis, dan keahlian teknis.
+                    </p>
+                    <p class="about-desc">
+                        Memiliki pengalaman manajerial kuat yang membentuk kerja terstruktur dan manajemen tim yang efektif. Aktif berkontribusi dalam berbagai organisasi kampus, dari legislatif hingga eksekutif.
+                    </p>
+                    <div class="about-traits">
+                        <div class="trait-item">
+                            <div class="trait-icon"><i class="ri-lightbulb-flash-line"></i></div>
+                            <div>
+                                <h4>Inovatif</h4>
+                                <p>Selalu mencari solusi kreatif untuk setiap tantangan</p>
+                            </div>
+                        </div>
+                        <div class="trait-item">
+                            <div class="trait-icon"><i class="ri-team-line"></i></div>
+                            <div>
+                                <h4>Kolaboratif</h4>
+                                <p>Membangun sinergi tim yang solid dan produktif</p>
+                            </div>
+                        </div>
+                        <div class="trait-item">
+                            <div class="trait-icon"><i class="ri-focus-3-line"></i></div>
+                            <div>
+                                <h4>Adaptif</h4>
+                                <p>Fleksibel menghadapi perubahan dan tantangan baru</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <h3>AI Customer Service Summit</h3>
-                        <p class="project-category">Open Source</p>
-                    </div>
-                </a>
+                </div>
 
-                <a href="project2.html" class="project-card">
-                    <div class="project-image">
-                        <img src="foto/halim.jpg" alt="Project 2">
-                        <div class="project-overlay">
-                            <p>View Details</p>
+                <div class="about-card-group reveal">
+                    <div class="info-card glass-card float-anim">
+                        <div class="info-icon"><i class="ri-graduation-cap-line"></i></div>
+                        <div class="info-content">
+                            <h4>S1 Teknik Informatika</h4>
+                            <p>PSDKU · Universitas Negeri Surabaya</p>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <h3>Caesar Cipher Cryptography</h3>
-                        <p class="project-category">Open Source</p>
-                    </div>
-                </a>
-
-                <a href="project1.html" class="project-card">
-                    <div class="project-image">
-                        <img src="foto/halim.jpg" alt="Project 3">
-                        <div class="project-overlay">
-                            <p>View Details</p>
+                    <div class="info-card glass-card float-anim" style="animation-delay:0.5s">
+                        <div class="info-icon"><i class="ri-medal-line"></i></div>
+                        <div class="info-content">
+                            <h4>IPK 3,86</h4>
+                            <p>Prestasi Akademik Cum Laude</p>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <h3>Smart Robot Car ESP32</h3>
-                        <p class="project-category">IoT Project</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- Certificates Tab -->
-        <div class="tab-content" id="certificates-tab">
-            <div class="certificates-list">
-                <div class="cert-item">
-                    <div class="cert-icon"><i class="ri-award-line"></i></div>
-                    <div class="cert-details">
-                        <h3>Web Development Certification</h3>
-                        <p>Issued by Skillshare - 2024</p>
-                    </div>
-                </div>
-
-                <div class="cert-item">
-                    <div class="cert-icon"><i class="ri-award-line"></i></div>
-                    <div class="cert-details">
-                        <h3>JavaScript Advanced Course</h3>
-                        <p>Issued by Udemy - 2024</p>
-                    </div>
-                </div>
-
-                <div class="cert-item">
-                    <div class="cert-icon"><i class="ri-award-line"></i></div>
-                    <div class="cert-details">
-                        <h3>Responsive Web Design</h3>
-                        <p>Issued by FreeCodeCamp - 2023</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tech Stack Tab -->
-        <div class="tab-content" id="tech-stack-tab">
-            <div class="tech-grid">
-                <div class="tech-item">
-                    <div class="tech-icon"><i class="ri-html5-line"></i></div>
-                    <h4>HTML5</h4>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon"><i class="ri-css3-line"></i></div>
-                    <h4>CSS3</h4>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon"><i class="ri-javascript-line"></i></div>
-                    <h4>JavaScript</h4>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon"><i class="ri-react-line"></i></div>
-                    <h4>React</h4>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon"><i class="ri-git-branch-line"></i></div>
-                    <h4>Git</h4>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon"><i class="ri-terminal-line"></i></div>
-                    <h4>Terminal</h4>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="section-header">
-            <h2>Contact Me</h2>
-            <p>Have something in mind? Send a message and let's connect.</p>
-        </div>
-
-        <div class="contact-container">
-            <!-- Contact Form -->
-            <div class="contact-form-wrapper">
-                <h3>Hubungi Saya</h3>
-                <p>Feel free to reach out if you want to collaborate, discuss ideas, or simply say hello.</p>
-
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <div class="input-icon"><i class="ri-user-line"></i></div>
-                        <input type="text" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-icon"><i class="ri-mail-line"></i></div>
-                        <input type="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-icon"><i class="ri-chat-3-line"></i></div>
-                        <textarea placeholder="Your Message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">
-                        <i class="ri-send-plane-2-line"></i> Send Message
-                    </button>
-                </form>
-            </div>
-
-            <!-- Social Links -->
-            <div class="social-wrapper">
-                <p class="social-title">Connect With Me</p>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/qolbun-halim-1b67a3371" target="_blank" class="social-link">
-                        <div class="social-icon"><i class="ri-linkedin-fill"></i></div>
-                        <div class="social-info">
-                            <h4>LinkedIn</h4>
-                            <p>@linkedin</p>
+                    <div class="info-card glass-card float-anim" style="animation-delay:1s">
+                        <div class="info-icon"><i class="ri-map-pin-2-line"></i></div>
+                        <div class="info-content">
+                            <h4>Jawa Timur, Indonesia</h4>
+                            <p>Available for Remote & On-site</p>
                         </div>
-                        <i class="ri-arrow-right-line"></i>
-                    </a>
-
-                    <a href="https://www.instagram.com/qolbunhalim_46" target="_blank" class="social-link">
-                        <div class="social-icon"><i class="ri-instagram-line"></i></div>
-                        <div class="social-info">
-                            <h4>Instagram</h4>
-                            <p>@instagram</p>
-                        </div>
-                        <i class="ri-arrow-right-line"></i>
-                    </a>
-
-                    <a href="https://github.com/byeone001" target="_blank" class="social-link">
-                        <div class="social-icon"><i class="ri-github-fill"></i></div>
-                        <div class="social-info">
-                            <h4>Github</h4>
-                            <p>@github</p>
-                        </div>
-                        <i class="ri-arrow-right-line"></i>
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ===== SKILLS SECTION ===== -->
+    <section id="skills" class="skills section-padding">
+        <div class="container">
+            <div class="section-label reveal">— Keahlian</div>
+            <h2 class="section-title reveal">Tech <span class="gradient-text">Stack & Skills</span></h2>
+            <p class="section-desc reveal">Kemampuan teknis dan non-teknis yang terus dikembangkan</p>
+
+            <div class="skills-bento reveal">
+                <!-- Programming -->
+                <div class="bento-card bento-wide glass-card skill-hover">
+                    <div class="bento-label"><i class="ri-code-s-slash-line"></i> Programming</div>
+                    <div class="skill-tags">
+                        <div class="skill-tag">
+                            <div class="skill-icon-wrap"><i class="ri-java-line"></i></div>
+                            <span>Java</span>
+                        </div>
+                        <div class="skill-tag">
+                            <div class="skill-icon-wrap"><i class="ri-braces-line"></i></div>
+                            <span>Python</span>
+                        </div>
+                        <div class="skill-tag">
+                            <div class="skill-icon-wrap"><i class="ri-javascript-line"></i></div>
+                            <span>JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Framework & Web -->
+                <div class="bento-card glass-card skill-hover">
+                    <div class="bento-label"><i class="ri-layout-3-line"></i> Framework & Web</div>
+                    <div class="skill-tags">
+                        <div class="skill-tag">
+                            <div class="skill-icon-wrap"><i class="ri-smartphone-line"></i></div>
+                            <span>Flutter</span>
+                        </div>
+                        <div class="skill-tag">
+                            <div class="skill-icon-wrap"><i class="ri-html5-line"></i></div>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="skill-tag">
+                            <div class="skill-icon-wrap"><i class="ri-css3-line"></i></div>
+                            <span>CSS3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Version Control -->
+                <div class="bento-card glass-card skill-hover">
+                    <div class="bento-label"><i class="ri-git-branch-line"></i> Version Control</div>
+                    <div class="skill-tags">
+                        <div class="skill-tag">
+                            <div class="skill-icon-wrap"><i class="ri-git-repository-line"></i></div>
+                            <span>GitLab</span>
+                        </div>
+                        <div class="skill-tag">
+                            <div class="skill-icon-wrap"><i class="ri-github-line"></i></div>
+                            <span>GitHub</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Soft Skills -->
+                <div class="bento-card bento-wide glass-card skill-hover">
+                    <div class="bento-label"><i class="ri-user-star-line"></i> Soft Skills</div>
+                    <div class="soft-skill-list">
+                        <span class="soft-chip"><i class="ri-mic-line"></i> Public Speaking</span>
+                        <span class="soft-chip"><i class="ri-brain-line"></i> Analytical Thinking</span>
+                        <span class="soft-chip"><i class="ri-flow-chart"></i> Project Management</span>
+                        <span class="soft-chip"><i class="ri-puzzle-line"></i> Problem Solving</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXPERIENCE SECTION ===== -->
+    <section id="experience" class="experience section-padding">
+        <div class="container">
+            <div class="section-label reveal">— Pengalaman & Kepemimpinan</div>
+            <h2 class="section-title reveal">Timeline <span class="gradient-text">Karir</span></h2>
+
+            <div class="timeline">
+                <div class="timeline-line"></div>
+
+                <div class="timeline-item reveal" data-side="left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-year">2026 / 2027</div>
+                        <h3>Ketua UKM UKKI</h3>
+                        <div class="timeline-org"><i class="ri-building-2-line"></i> Kampus UNESA 5</div>
+                        <p>Memimpin program kerja kerohanian terintegrasi SDGs untuk membentuk karakter mahasiswa yang unggul dan berakhlak mulia.</p>
+                        <div class="timeline-tag">Kepemimpinan</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal" data-side="right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-year">2026 / 2027</div>
+                        <h3>Sekretaris DPM</h3>
+                        <div class="timeline-org"><i class="ri-building-2-line"></i> Kampus UNESA 5</div>
+                        <p>Standarisasi kearsipan dan birokrasi fakultas untuk meningkatkan efisiensi dan transparansi administrasi lembaga legislatif.</p>
+                        <div class="timeline-tag">Administrasi</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal" data-side="left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-year">2025</div>
+                        <h3>Sekretaris KPU</h3>
+                        <div class="timeline-org"><i class="ri-building-2-line"></i> Kampus UNESA 5</div>
+                        <p>Mengelola administrasi PEMIRA secara transparan dan akuntabel, memastikan proses demokrasi berjalan dengan baik.</p>
+                        <div class="timeline-tag">Demokrasi</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal" data-side="right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-year">2025 / 2026</div>
+                        <h3>Ketua Dept. Sinergi Muda</h3>
+                        <div class="timeline-org"><i class="ri-building-2-line"></i> HIMA Informatika</div>
+                        <p>Menginisiasi program kolaborasi strategis antar organisasi untuk memperluas jaringan dan dampak positif bagi mahasiswa.</p>
+                        <div class="timeline-tag">Kolaborasi</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal" data-side="left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-year">2025</div>
+                        <h3>Wakil Koordinator Pemandu PKKMB</h3>
+                        <div class="timeline-org"><i class="ri-building-2-line"></i> Kampus UNESA 5</div>
+                        <p>Memecahkan masalah operasional dan mitigasi risiko dalam penyelenggaraan PKKMB untuk kelancaran orientasi mahasiswa baru.</p>
+                        <div class="timeline-tag">Koordinasi</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EDUCATION SECTION ===== -->
+    <section id="education" class="education section-padding">
+        <div class="container">
+            <div class="section-label reveal">— Pendidikan & Prestasi</div>
+            <h2 class="section-title reveal">Pencapaian <span class="gradient-text">Akademik</span></h2>
+
+            <div class="edu-grid">
+                <div class="edu-card glass-card reveal float-anim">
+                    <div class="edu-icon"><i class="ri-graduation-cap-fill"></i></div>
+                    <div class="edu-detail">
+                        <span class="edu-degree">S1 Teknik Informatika</span>
+                        <h3>Universitas Negeri Surabaya</h3>
+                        <p class="edu-faculty">PSDKU · Fakultas Teknik</p>
+                        <div class="edu-gpa">
+                            <i class="ri-star-fill"></i>
+                            <span>IPK <strong>3,86</strong> / 4,00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievement-card glass-card reveal float-anim" style="animation-delay:0.5s">
+                    <div class="ach-header">
+                        <i class="ri-trophy-line"></i>
+                        <span>Prestasi</span>
+                    </div>
+                    <div class="ach-item">
+                        <div class="ach-icon"><i class="ri-award-fill"></i></div>
+                        <div class="ach-text">
+                            <h4>Delegasi Lomba Desain Aplikasi Al-Qur'an</h4>
+                            <p>MTQM Tingkat Fakultas · 2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section id="contact" class="contact section-padding">
+        <div class="container">
+            <div class="section-label reveal">— Kontak</div>
+            <h2 class="section-title reveal">Mari <span class="gradient-text">Terhubung</span></h2>
+            <p class="section-desc reveal">Terbuka untuk kolaborasi, diskusi, atau sekadar menyapa. Jangan ragu untuk menghubungi saya!</p>
+
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <div class="contact-card glass-card">
+                        <a href="mailto:25051204442@mhs.unesa.ac.id" class="contact-item" id="contactEmail">
+                            <div class="contact-icon"><i class="ri-mail-line"></i></div>
+                            <div class="contact-detail">
+                                <span class="contact-label">Email</span>
+                                <span class="contact-value">25051204442@mhs.unesa.ac.id</span>
+                            </div>
+                            <i class="ri-arrow-right-up-line contact-arrow"></i>
+                        </a>
+
+                        <a href="tel:+6281945055565" class="contact-item" id="contactPhone">
+                            <div class="contact-icon"><i class="ri-phone-line"></i></div>
+                            <div class="contact-detail">
+                                <span class="contact-label">Telepon</span>
+                                <span class="contact-value">+62 819 4505 5565</span>
+                            </div>
+                            <i class="ri-arrow-right-up-line contact-arrow"></i>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/qolbun-halim-hidayatulloh" target="_blank" class="contact-item" id="contactLinkedIn">
+                            <div class="contact-icon linkedin-icon"><i class="ri-linkedin-fill"></i></div>
+                            <div class="contact-detail">
+                                <span class="contact-label">LinkedIn</span>
+                                <span class="contact-value">qolbun-halim-hidayatulloh</span>
+                            </div>
+                            <i class="ri-arrow-right-up-line contact-arrow"></i>
+                        </a>
+
+                        <a href="https://github.com/byeone001" target="_blank" class="contact-item" id="contactGithub">
+                            <div class="contact-icon github-icon"><i class="ri-github-fill"></i></div>
+                            <div class="contact-detail">
+                                <span class="contact-label">GitHub</span>
+                                <span class="contact-value">byeone001</span>
+                            </div>
+                            <i class="ri-arrow-right-up-line contact-arrow"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrap reveal">
+                    <form class="contact-form glass-card" id="contactForm">
+                        <h3>Kirim Pesan</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="inputName">Nama</label>
+                                <div class="input-wrap">
+                                    <i class="ri-user-line"></i>
+                                    <input type="text" id="inputName" placeholder="Nama Lengkap" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail">Email</label>
+                                <div class="input-wrap">
+                                    <i class="ri-mail-line"></i>
+                                    <input type="email" id="inputEmail" placeholder="email@domain.com" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSubject">Subjek</label>
+                            <div class="input-wrap">
+                                <i class="ri-chat-1-line"></i>
+                                <input type="text" id="inputSubject" placeholder="Perihal pesan Anda">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputMessage">Pesan</label>
+                            <div class="input-wrap textarea-wrap">
+                                <i class="ri-message-3-line"></i>
+                                <textarea id="inputMessage" placeholder="Tulis pesan Anda di sini..." rows="5" required></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-submit" id="btnSubmit">
+                            <i class="ri-send-plane-2-line"></i>
+                            <span>Kirim Pesan</span>
+                        </button>
+                        <div class="form-success" id="formSuccess">
+                            <i class="ri-checkbox-circle-fill"></i>
+                            Pesan terkirim! Terima kasih telah menghubungi saya.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
-        <p>&copy; 2026 Qolbun Halim Hidayatulloh — All rights reserved.</p>
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <span class="logo-bracket">&lt;</span>QH<span class="logo-bracket">/&gt;</span>
+            </div>
+            <p class="footer-text">
+                Dibuat dengan <i class="ri-heart-fill" style="color:#00d9ff"></i> oleh Qolbun Halim Hidayatulloh &copy; 2026
+            </p>
+            <p class="footer-sub">Mahasiswa Teknik Informatika · UNESA</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
