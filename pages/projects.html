@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arsip Proyek & Eksplorasi Kode | Qolbun Halim</title>
+    <meta name="description" content="Arsip Proyek dan kumpulan repositori kode Qolbun Halim Hidayatulloh.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* PROJECTS PAGE SPECIFIC STYLES */
+        .projects-page {
+            position: relative;
+            z-index: 2;
+            padding-bottom: 5rem;
+        }
+
+        .projects-header {
+            padding: 10rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-nav {
+            position: absolute;
+            top: 7rem;
+            left: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 0.6rem 1.2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .back-nav i {
+            transition: transform 0.3s ease;
+            color: var(--cyan);
+        }
+
+        .back-nav:hover {
+            color: var(--cyan);
+            border-color: var(--cyan);
+            background: var(--cyan-dim);
+            box-shadow: 0 0 15px var(--cyan-dim);
+        }
+
+        .back-nav:hover i {
+            transform: translateX(-5px) scale(1.1);
+        }
+
+        @media (max-width: 900px) {
+            .back-nav {
+                top: 6rem;
+                left: 1.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .projects-header {
+                padding-top: 8rem;
+            }
+
+            .back-nav {
+                top: 5rem;
+                left: 1.25rem;
+                font-size: 0.85rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        .projects-title {
+            font-family: var(--font-alt);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 0%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .projects-subtitle {
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 2rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* Hero Stats Override for Projects Page */
+        .projects-hero-stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .projects-hero-stats .stat-value {
+            font-family: var(--font-alt);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--cyan);
+        }
+
+        .projects-hero-stats .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .category-section {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .category-title {
+            font-family: var(--font-alt);
+            font-size: 1.8rem;
+            color: var(--text);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .category-count {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--cyan-dim);
+            color: var(--cyan);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            margin-left: 0.5rem;
+        }
+
+        .category-header::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--glass-border), transparent);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Ensure .reveal transitions apply properly on hover independently */
+        .project-card.reveal.visible {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            border-color: rgba(0, 217, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.1);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(0, 217, 255, 0.08), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-icon {
+            font-size: 1.8rem;
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-icon {
+            transform: scale(1.1) rotate(-5deg);
+            box-shadow: 0 0 15px var(--cyan-dim);
+            color: #fff;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .project-links a {
+            color: var(--text-muted);
+            font-size: 1.4rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid transparent;
+        }
+
+        .project-links a:hover {
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            border-color: var(--glass-border);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 217, 255, 0.15);
+        }
+
+        .project-title {
+            font-family: var(--font-alt);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+            line-height: 1.4;
+        }
+
+        .project-card:hover .project-title {
+            color: var(--cyan);
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .project-footer {
+            margin-top: auto;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tag {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.35rem 0.8rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-family: var(--font-alt);
+            letter-spacing: 0.5px;
+            pointer-events: none;
+        }
+
+        .project-card:hover .project-tag {
+            border-color: rgba(0, 217, 255, 0.2);
+            color: var(--text);
+            background: rgba(0, 217, 255, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--cyan);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cta i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            background: var(--cyan-dim);
+            border-color: var(--cyan);
+            box-shadow: 0 0 20px var(--cyan-glow);
+            color: #fff;
+        }
+
+        .btn-cta:hover i {
+            transform: translateX(4px);
+        }
+
+        /* RESPONSIVE - TABLET */
+        @media (max-width: 900px) {
+            .projects-header {
+                padding: 8rem 1.5rem 3rem;
+            }
+
+            .projects-title {
+                font-size: clamp(1.8rem, 4vw, 2.8rem);
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .project-card {
+                padding: 1.5rem;
+            }
+
+            .category-section {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .back-nav {
+                top: 6rem;
+                left: 1.5rem;
+            }
+        }
+
+        /* RESPONSIVE - MOBILE */
+        @media (max-width: 600px) {
+            .projects-page {
+                padding-bottom: 3rem;
+            }
+
+            .projects-header {
+                padding: 6.5rem 1rem 2.5rem;
+            }
+
+            .projects-title {
+                font-size: clamp(1.5rem, 3vw, 2.2rem);
+                margin-bottom: 0.75rem;
+            }
+
+            .projects-subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .projects-hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0.75rem 1rem;
+                border-radius: 16px;
+            }
+
+            .stat-divider {
+                display: none;
+            }
+
+            .projects-hero-stats .stat-value {
+                font-size: 1.4rem;
+            }
+
+            .projects-hero-stats .stat-label {
+                font-size: 0.8rem;
+            }
+
+            .back-nav {
+                top: 4.8rem;
+                left: 1rem;
+                font-size: 0.85rem;
+                padding: 0.5rem 0.9rem;
+            }
+
+            .category-section {
+                padding: 2rem 1rem;
+            }
+
+            .category-header {
+                margin-bottom: 1.5rem;
+            }
+
+            .category-title {
+                font-size: 1.3rem;
+                gap: 0.5rem;
+            }
+
+            .category-count {
+                padding: 0.15rem 0.6rem;
+                font-size: 0.85rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .project-card {
+                padding: 1.25rem;
+                border-radius: 16px;
+            }
+
+            .project-top {
+                margin-bottom: 1rem;
+            }
+
+            .project-icon {
+                font-size: 1.4rem;
+                width: 40px;
+                height: 40px;
+            }
+
+            .project-title {
+                font-size: 1.1rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .project-desc {
+                font-size: 0.85rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .project-tags {
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .project-tag {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.7rem;
+            }
+
+            .btn-cta {
+                padding: 0.7rem;
+                font-size: 0.85rem;
+            }
+
+            .btn-cta i {
+                font-size: 0.9rem;
+            }
+
+            .project-links a {
+                font-size: 1.2rem;
+                width: 34px;
+                height: 34px;
+            }
+        }
+
+        /* RESPONSIVE - SMALL MOBILE */
+        @media (max-width: 380px) {
+            .projects-header {
+                padding: 6rem 0.75rem 2rem;
+            }
+
+            .projects-title {
+                font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+                margin-bottom: 0.5rem;
+            }
+
+            .projects-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+
+            .back-nav {
+                top: 4.5rem;
+                left: 0.75rem;
+                font-size: 0.8rem;
+                padding: 0.45rem 0.8rem;
+            }
+
+            .category-section {
+                padding: 1.75rem 0.75rem;
+            }
+
+            .category-title {
+                font-size: 1.1rem;
+            }
+
+            .project-card {
+                padding: 1rem;
+            }
+
+            .project-title {
+                font-size: 1rem;
+            }
+
+            .project-desc {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Hidden elements required by script.js to avoid errors -->
+    <span id="typewriter" style="display:none;"></span>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-bracket">&lt;</span>QH<span class="logo-bracket">&gt;</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html#home" class="nav-link">Beranda</a></li>
+                <li><a href="../index.html#about" class="nav-link">Tentang</a></li>
+                <li><a href="../index.html#skills" class="nav-link">Keahlian</a></li>
+                <li><a href="../index.html#experience" class="nav-link">Pengalaman</a></li>
+                <li><a href="../index.html#education" class="nav-link">Pendidikan</a></li>
+                <li><a href="../index.html#contact" class="nav-link">Kontak</a></li>
+                <li><a href="projects.html" class="nav-link" id="navProjects"><i class="ri-folder-code-line"></i>
+                        Proyek</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== PROJECTS PAGE ===== -->
+    <div class="projects-page">
+        <!-- Hero Background Orbs (Reused) -->
+        <div class="hero-bg-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+
+        <header class="projects-header">
+            <a href="../index.html" class="back-nav fade-up">
+                <i class="ri-arrow-left-line"></i> Kembali ke Beranda
+            </a>
+
+            <h1 class="projects-title fade-up" style="animation-delay: 0.1s;">Arsip Proyek & Eksplorasi Kode</h1>
+            <p class="projects-subtitle fade-up" style="animation-delay: 0.2s;">Kumpulan portofolio, aplikasi, dan
+                repository open source yang saya kembangkan untuk mengeksplorasi teknologi dan menyelesaikan masalah.
+            </p>
+
+            <div class="projects-hero-stats fade-up" style="animation-delay: 0.3s;">
+                <div class="stat-item" style="text-align: center;">
+                    <span class="stat-value">12</span>
+                    <br><span class="stat-label">Total Proyek GitHub</span>
+                </div>
+                <div class="stat-divider" style="width: 1px; height: 30px; background: var(--glass-border);"></div>
+                <div class="stat-item" style="text-align: center;">
+                    <span class="stat-value">3</span>
+                    <br><span class="stat-label">Kategori Utama</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Kategori Aplikasi & Sistem -->
+        <section class="category-section">
+            <div class="category-header reveal">
+                <h2 class="category-title">
+                    <i class="ri-window-fill"></i> Aplikasi & Sistem
+                    <span class="category-count">4</span>
+                </h2>
+            </div>
+            <div class="projects-grid">
+
+                <div class="project-card reveal">
+                    <div class="project-top">
+                        <div class="project-icon"><i class="ri-macbook-line"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/byeone001/Aplikasi-Les-Privat" target="_blank"
+                                title="GitHub Repo"><i class="ri-github-fill"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Aplikasi Les Privat</h3>
+                    <p class="project-desc">Memanfaatkan Java Spring Boot untuk membangun sistem backend dan versi final
+                        manajemen les privat yang komprehensif.</p>
+                    <div class="project-footer">
+                        <div class="project-tags">
+                            <span class="project-tag">Java</span>
+                            <span class="project-tag">Spring Boot</span>
+                            <span class="project-tag">MySQL</span>
+                        </div>
+                        <a href="https://github.com/byeone001/Aplikasi-Les-Privat" target="_blank" class="btn-cta">
+                            View Repository <i class="ri-share-box-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-top">
+                        <div class="project-icon"><i class="ri-database-2-line"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/byeone001/Si-Abas" target="_blank" title="GitHub Repo"><i
+                                    class="ri-github-fill"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Si-Abas</h3>
+                    <p class="project-desc">Sistem Informasi administrasi dan basis data yang dirancang untuk
+                        pengelolaan data secara terstruktur dan efisien.</p>
+                    <div class="project-footer">
+                        <div class="project-tags">
+                            <span class="project-tag">PHP</span>
+                            <span class="project-tag">Laravel</span>
+                            <span class="project-tag">Bootstrap</span>
+                        </div>
+                        <a href="https://github.com/byeone001/Si-Abas" target="_blank" class="btn-cta">
+                            View Repository <i class="ri-share-box-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-top">
+                        <div class="project-icon"><i class="ri-restaurant-line"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/byeone001/Project-Aplikasi-Restaurant" target="_blank"
+                                title="GitHub Repo"><i class="ri-github-fill"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">MenuResto</h3>
+                    <p class="project-desc">Aplikasi desktop management restaurant untuk pencatatan pesanan, pengelolaan
+                        menu, dan sistem kasir yang interaktif.</p>
+                    <div class="project-footer">
+                        <div class="project-tags">
+                            <span class="project-tag">Java</span>
+                            <span class="project-tag">GUI</span>
+                            <span class="project-tag">Database</span>
+                        </div>
+                        <a href="https://github.com/byeone001/Project-Aplikasi-Restaurant" target="_blank"
+                            class="btn-cta">
+                            View Repository <i class="ri-share-box-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-top">
+                        <div class="project-icon"><i class="ri-ticket-2-line"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/byeone001/movie-ticket-reservation" target="_blank"
+                                title="GitHub Repo"><i class="ri-github-fill"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Ticket Bioskop Reservation</h3>
+                    <p class="project-desc">Platform CLI reservasi tiket bioskop secara real-time dengan kemampuan
+                        manajemen data penumpang dan jadwal penayangan film.</p>
+                    <div class="project-footer">
+                        <div class="project-tags">
+                            <span class="project-tag">Java</span>
+                            <span class="project-tag">OOP</span>
+                            <span class="project-tag">CLI</span>
+                        </div>
+                        <a href="https://github.com/byeone001/movie-ticket-reservation" target="_blank" class="btn-cta">
+                            View Repository <i class="ri-share-box-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Kategori Web & Bisnis -->
+        <section class="category-section">
+            <div class="category-header reveal">
+                <h2 class="category-title">
+                    <i class="ri-global-line"></i> Web & Bisnis
+                    <span class="category-count">4</span>
+                </h2>
+            </div>
+            <div class="projects-grid">
+
+                <div class="project-card reveal">
+                    <div class="project-top">
+                        <div class="project-icon"><i class="ri-store-2-line"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/byeone001/TokoLampuMakmur" target="_blank"
+                                title="GitHub Repo"><i class="ri-github-fill"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">TokoLampuMakmur</h3>
+                    <p class="project-desc">Aplikasi platform web e-commerce spesifik untuk lini penjualan kelistrikan
+                        dan lampu dengan integrasi katalog menarik.</p>
+                    <div class="project-footer">
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">JavaScript</span>
+                        </div>
+                        <a href="https://github.com/byeone001/TokoLampuMakmur" target="_blank" class="btn-cta">
+                            View Repository <i class="ri-share-box-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-top">
+                        <div class="project-icon"><i class="ri-shopping-bag-3-line"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/byeone001/Makjulo_Official" target="_blank"
+                                title="GitHub Repo"><i class="ri-github-fill"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Makjulo Official</h3>
+                    <p class="project-desc">Pengembangan situs informasi resmi dan landing page menarik untuk
+                        mempresentasikan portofolio brand Makjulo.</p>
+                    <div class="project-footer">
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">Design</span>
+                        </div>
+                        <a href="https://github.com/byeone001/Makjulo_Official" target="_blank" class="btn-cta">
+                            View Repository <i class="ri-share-box-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-top">
+                        <div class="project-icon"><i class="ri-cup-line"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/byeone001/WarKita" target="_blank" title="GitHub Repo"><i
+                                    class="ri-github-fill"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">WarKita</h3>
+                    <p class="project-desc">Platform website pendukung dan sistem informasi operasional untuk
+                        menjembatani warkop lokal secara digital (Warung Kita).</p>
+                    <div class="project-footer">
+                        <div class="project-tags">
+                            <span class="project-tag">Web App</span>
+                            <span class="project-tag">UI/UX</span>
+                            <span class="project-tag">Frontend</span>
+                        </div>
+                        <a href="https://github.com/byeone001/WarKita" target="_blank" class="btn-cta">
+                            View Repository <i class="ri-share-box-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-top">
+                        <div class="project-icon"><i class="ri-book-read-line"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/byeone001/LESMANIA" target="_blank" title="GitHub Repo"><i
+                                    class="ri-github-fill"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">LESMANIA</h3>
+                    <p class="project-desc">Platform dan layanan bisnis perantara informatif untuk mencari dan memesan
+                        berbagai macam program edukasi dan les tambahan.</p>
+                    <div class="project-footer">
+                        <div class="project-tags">
+                            <span class="project-tag">Web Design</span>
+                            <span class="project-tag">Platform</span>
+                            <span class="project-tag">Responsive</span>
+                        </div>
+                        <a href="https://github.com/byeone001/LESMANIA" target="_blank" class="btn-cta">
+                            View Repository <i class="ri-share-box-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Kategori Personal & Eksplorasi -->
+        <section class="category-section">
+            <div class="category-header reveal">
+                <h2 class="category-title">
+                    <i class="ri-user-star-line"></i> Personal & Eksplorasi
+                    <span class="category-count">4</span>
+                </h2>
+            </div>
+            <div class="projects-grid">
+
+                <div class="project-card reveal">
+                    <div class="project-top">
+                        <div class="project-icon"><i class="ri-code-box-line"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/byeone001/Qolbun-Halim" target="_blank" title="GitHub Repo"><i
+                                    class="ri-github-fill"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Qolbun-Halim</h3>
+                    <p class="project-desc">Repositore master untuk website portfolio personal yang Anda lihat sekarang,
+                        dengan sentuhan desain minimalis interaktif.</p>
+                    <div class="project-footer">
+                        <div class="project-tags">
+                            <span class="project-tag">HTML5</span>
+                            <span class="project-tag">CSS3</span>
+                            <span class="project-tag">JavaScript</span>
+                        </div>
+                        <a href="https://github.com/byeone001/Qolbun-Halim" target="_blank" class="btn-cta">
+                            View Repository <i class="ri-share-box-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-top">
+                        <div class="project-icon"><i class="ri-book-open-line"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/byeone001/Kajian-Islam-Ngaji-Iman-Islam-Ihsan" target="_blank"
+                                title="GitHub Repo"><i class="ri-github-fill"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Kajian Islam</h3>
+                    <p class="project-desc">Kumpulan eksplorasi materi tentang esensi spiritual Islam terstruktur untuk
+                        memahami Iman, Islam, dan Ihsan.</p>
+                    <div class="project-footer">
+                        <div class="project-tags">
+                            <span class="project-tag">Dakwah</span>
+                            <span class="project-tag">Content</span>
+                            <span class="project-tag">Web</span>
+                        </div>
+                        <a href="https://github.com/byeone001/Kajian-Islam-Ngaji-Iman-Islam-Ihsan" target="_blank"
+                            class="btn-cta">
+                            View Repository <i class="ri-share-box-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-top">
+                        <div class="project-icon"><i class="ri-gift-line"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/byeone001/SelamatUlangTahun" target="_blank"
+                                title="GitHub Repo"><i class="ri-github-fill"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Selamat Ulang Tahun</h3>
+                    <p class="project-desc">Sebuah proyek mini interaktif berbasis animasi CSS dan kontrol event
+                        listener untuk website kartu ucapan.</p>
+                    <div class="project-footer">
+                        <div class="project-tags">
+                            <span class="project-tag">CSS Anim</span>
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">HTML</span>
+                        </div>
+                        <a href="https://github.com/byeone001/SelamatUlangTahun" target="_blank" class="btn-cta">
+                            View Repository <i class="ri-share-box-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-top">
+                        <div class="project-icon"><i class="ri-html5-fill"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/byeone001/Belajar-HTML-Dasar" target="_blank"
+                                title="GitHub Repo"><i class="ri-github-fill"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Belajar-HTML-Dasar</h3>
+                    <p class="project-desc">Dokumentasi repositori progresif kode fundamental dalam eksplorasi saya
+                        terkait struktur bahasa dasar markup web.</p>
+                    <div class="project-footer">
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">Learning</span>
+                            <span class="project-tag">Basics</span>
+                        </div>
+                        <a href="https://github.com/byeone001/Belajar-HTML-Dasar" target="_blank" class="btn-cta">
+                            View Repository <i class="ri-share-box-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <span class="logo-bracket">&lt;</span>QH<span class="logo-bracket">&gt;</span>
+            </div>
+            <p class="footer-text">Copyright © 2026 Qolbun Halim Hidayatulloh.</p>
+            <p class="footer-text">
+                All rights reserved.
+            </p>
+            <p class="footer-sub">Mahasiswa Teknik Informatika · Fakultas Teknik · Universitas Negeri Surabaya</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>

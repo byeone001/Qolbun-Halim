@@ -1,0 +1,598 @@
+/* ===================================================
+   PROJECTS PAGE — projects.css
+   Extends style.css (design tokens already imported).
+   DO NOT edit style.css. All styles here are scoped
+   exclusively to the Projects page.
+   =================================================== */
+
+/* ── Shared page setup ── */
+body {
+    /* Ensure particles canvas sits behind everything */
+}
+
+/* ── FADE-SLIDE-UP entrance animation (Hero elements) ── */
+@keyframes fadeSlideUp {
+    0%   { opacity: 0; transform: translateY(36px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+.fade-slide-up {
+    opacity: 0;
+    animation: fadeSlideUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ===== PROJECTS HEADER ===== */
+.proj-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1rem 0;
+    background: rgba(5, 8, 17, 0.72);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}
+.proj-header.scrolled {
+    padding: 0.65rem 0;
+    background: rgba(5, 8, 17, 0.94);
+}
+
+.proj-header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Back to Home button */
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+.back-btn:hover {
+    color: var(--cyan);
+    border-color: var(--cyan);
+    background: var(--cyan-dim);
+    transform: translateX(-4px);
+}
+.back-arrow-icon {
+    transition: transform 0.3s ease;
+}
+.back-btn:hover .back-arrow-icon {
+    transform: translateX(-4px);
+}
+
+/* Logo (centered in header) */
+.proj-logo {
+    font-family: var(--font-alt);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* GitHub profile button */
+.github-profile-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+.github-profile-btn:hover {
+    color: var(--cyan);
+    border-color: var(--cyan);
+    background: var(--cyan-dim);
+    transform: translateY(-2px);
+    box-shadow: 0 0 18px var(--cyan-dim);
+}
+
+/* ===== PROJECTS HERO SECTION ===== */
+.proj-hero {
+    min-height: 72vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 2rem 5rem;
+    z-index: 1;
+}
+
+.proj-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+    width: 100%;
+}
+
+.proj-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.proj-title {
+    font-family: var(--font-alt);
+    font-size: clamp(2.2rem, 5.5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+}
+
+.proj-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    max-width: 580px;
+    margin: 0 auto 2.5rem;
+}
+
+/* ── Filter Pills ── */
+.filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 1.2rem;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    color: var(--text-muted);
+    font-size: 0.84rem;
+    font-weight: 500;
+    font-family: var(--font);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.filter-pill:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    background: var(--cyan-dim);
+    transform: translateY(-2px);
+}
+.filter-pill.active {
+    background: var(--cyan-dim);
+    border-color: rgba(0, 217, 255, 0.45);
+    color: var(--cyan);
+    box-shadow: 0 0 16px rgba(0, 217, 255, 0.18);
+}
+.filter-pill i {
+    font-size: 0.95rem;
+}
+
+/* ── Hero Stats Bar ── */
+.proj-stats-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    padding: 0.9rem 2rem;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: relative;
+    z-index: 2;
+}
+.proj-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.proj-stat-value {
+    font-family: var(--font-alt);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--cyan);
+    line-height: 1;
+}
+.proj-stat-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+    letter-spacing: 0.05em;
+}
+.proj-stat-divider {
+    width: 1px;
+    height: 36px;
+    background: var(--glass-border);
+}
+
+/* ===== MAIN PROJECT AREA ===== */
+.proj-main {
+    padding: 4rem 2rem 6rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Category Label Row ── */
+.cat-label-row {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin: 3.5rem 0 2rem;
+}
+.cat-label-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+}
+.cat-label-text {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+}
+.cat-label-text i {
+    font-size: 1rem;
+}
+
+/* ── Project Grid ── */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    transition: all 0.4s ease;
+}
+
+/* ── Project Card ── */
+.proj-card {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.4s ease,
+                border-color 0.35s ease;
+    cursor: default;
+}
+
+/* Hover: Float upward with glow */
+.proj-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(0, 217, 255, 0.4);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(0, 217, 255, 0.12);
+}
+
+/* Inner padding container */
+.proj-card-inner {
+    padding: 1.75rem;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    height: 100%;
+}
+
+/* ── Card Top Row (folder icon + github icon) ── */
+.proj-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.proj-folder-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--cyan-dim);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cyan);
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+}
+.proj-card:hover .proj-folder-icon {
+    background: rgba(0, 217, 255, 0.2);
+    box-shadow: 0 0 16px rgba(0, 217, 255, 0.25);
+}
+
+.proj-folder-special {
+    background: rgba(0, 217, 255, 0.15);
+    border-color: rgba(0, 217, 255, 0.3);
+}
+
+.proj-corner-github {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+.proj-card:hover .proj-corner-github {
+    color: var(--cyan);
+}
+
+/* ── Card Title ── */
+.proj-card-title {
+    font-family: var(--font-alt);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+    transition: color 0.3s ease;
+}
+.proj-card:hover .proj-card-title {
+    color: var(--cyan);
+}
+
+/* ── Card Description ── */
+.proj-card-desc {
+    font-size: 0.86rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    flex: 1;
+}
+
+/* ── Tech Tag Pills ── */
+.proj-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+.proj-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.75rem;
+    background: rgba(0, 217, 255, 0.06);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    font-size: 0.76rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+}
+.proj-tag i {
+    color: var(--cyan);
+    font-size: 0.85rem;
+}
+.proj-card:hover .proj-tag {
+    background: rgba(0, 217, 255, 0.1);
+    border-color: rgba(0, 217, 255, 0.25);
+    color: var(--text);
+}
+
+/* Glowing special tag */
+.proj-tag-glow {
+    background: rgba(0, 217, 255, 0.12) !important;
+    border-color: rgba(0, 217, 255, 0.4) !important;
+    color: var(--cyan) !important;
+}
+
+/* ── CTA Button (View Repository) ── */
+.proj-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.6rem 1.15rem;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    align-self: flex-start;
+    font-family: var(--font);
+}
+.proj-cta-btn:hover,
+.proj-card:hover .proj-cta-btn {
+    color: var(--cyan);
+    border-color: var(--cyan);
+    background: var(--cyan-dim);
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.25),
+                0 0 8px rgba(0, 217, 255, 0.12);
+    transform: translateY(-2px);
+}
+.proj-cta-btn i {
+    font-size: 0.95rem;
+    transition: transform 0.3s ease;
+}
+.proj-cta-btn:hover i {
+    transform: translate(2px, -2px);
+}
+
+/* ── Card Glow (decorative background effect) ── */
+.proj-card-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 0%, rgba(0, 217, 255, 0.05), transparent 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+.proj-card:hover .proj-card-glow {
+    opacity: 1;
+}
+
+/* Special glow for featured card */
+.proj-card-glow-special {
+    background: radial-gradient(ellipse at 60% 0%, rgba(0, 217, 255, 0.1), transparent 70%);
+}
+
+/* ── Featured Card (This Repo) ── */
+.proj-card-featured {
+    border-color: rgba(0, 217, 255, 0.25);
+    background: rgba(0, 217, 255, 0.03);
+}
+.proj-card-featured:hover {
+    border-color: rgba(0, 217, 255, 0.55);
+    box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.45),
+        0 0 40px rgba(0, 217, 255, 0.18);
+}
+
+.proj-featured-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.7rem;
+    background: rgba(0, 217, 255, 0.15);
+    border: 1px solid rgba(0, 217, 255, 0.4);
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--cyan);
+    z-index: 2;
+    animation: badgePulse 3s ease infinite;
+}
+.proj-featured-badge i {
+    font-size: 0.75rem;
+}
+
+/* ── Empty State ── */
+.proj-empty-state {
+    text-align: center;
+    padding: 5rem 2rem;
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.proj-empty-state i {
+    font-size: 3rem;
+    color: var(--glass-border);
+}
+.proj-empty-state p {
+    font-size: 1rem;
+}
+
+/* ── Card hidden state for filtering ── */
+.proj-card.hidden {
+    display: none;
+}
+
+/* ── Card enter animation (for filter reveal) ── */
+@keyframes cardReveal {
+    from { opacity: 0; transform: translateY(24px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.proj-card.filter-in {
+    animation: cardReveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Mouse-following glow effect on card ── */
+.proj-card-mouse-glow {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0, 217, 255, 0.08), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease;
+    z-index: 0;
+    opacity: 0;
+}
+.proj-card:hover .proj-card-mouse-glow {
+    opacity: 1;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .proj-hero {
+        padding: 7rem 1.5rem 4rem;
+    }
+    .proj-title {
+        font-size: 2rem;
+    }
+    .filter-pills {
+        gap: 0.45rem;
+    }
+    .filter-pill {
+        font-size: 0.78rem;
+        padding: 0.48rem 0.95rem;
+    }
+    .proj-stats-bar {
+        gap: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+    .cat-label-row {
+        margin: 2.5rem 0 1.5rem;
+    }
+    .proj-header-inner {
+        padding: 0 1.25rem;
+    }
+    .github-profile-btn span {
+        display: none; /* icon only on mobile */
+    }
+    .back-btn span {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+    .proj-main {
+        padding: 3rem 1.25rem 5rem;
+    }
+    .proj-hero {
+        min-height: 60vh;
+    }
+    .proj-stats-bar {
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 16px;
+        gap: 0.75rem;
+    }
+    .proj-stat-divider {
+        display: none;
+    }
+}

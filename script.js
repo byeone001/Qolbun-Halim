@@ -59,7 +59,7 @@ function animateCursor() {
 }
 animateCursor();
 
-document.querySelectorAll('a,button,.skill-tag,.bento-card').forEach(el => {
+document.querySelectorAll('a,button,.skill-tag,.bento-card,.project-card,.btn-cta').forEach(el => {
     el.addEventListener('mouseenter', () => {
         ring.style.transform = 'translate(-50%,-50%) scale(1.6)';
         ring.style.borderColor = 'rgba(0,217,255,0.8)';
