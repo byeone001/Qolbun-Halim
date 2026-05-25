@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arsip Proyek & Eksplorasi Kode | Qolbun Halim</title>
+    <title>Qolbun Halim Hidayatulloh | Mahasiswa Teknik Informatika UNESA</title>
     <meta name="description" content="Arsip Proyek dan kumpulan repositori kode Qolbun Halim Hidayatulloh.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -368,6 +368,121 @@
             transform: translateX(4px);
         }
 
+        /* ===== FILTER TABS ===== */
+        .filter-tabs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .filter-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-muted);
+            border: 1.5px solid var(--glass-border);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-family: var(--font-alt);
+            letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(0, 217, 255, 0.08), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .filter-btn:hover {
+            color: var(--cyan);
+            border-color: rgba(0, 217, 255, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn:hover::before {
+            opacity: 1;
+        }
+
+        .filter-btn.active {
+            color: #fff;
+            border-color: var(--cyan);
+            background: var(--cyan-dim);
+            box-shadow: 0 0 20px var(--cyan-glow);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        .filter-btn.active::before {
+            opacity: 1;
+        }
+
+        .filter-count {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 217, 255, 0.15);
+            padding: 0.15rem 0.6rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--cyan);
+            margin-left: 0.3rem;
+        }
+
+        .filter-btn.active .filter-count {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        /* PROJECT CARD FILTERING */
+        .project-card {
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            will-change: opacity, transform;
+        }
+
+        .project-card.filter-hidden,
+        .project-card.reveal.filter-hidden {
+            opacity: 0 !important;
+            transform: scale(0.9) translateY(18px) !important;
+            pointer-events: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            align-items: start;
+        }
+
         /* RESPONSIVE - TABLET */
         @media (max-width: 900px) {
             .projects-header {
@@ -394,6 +509,19 @@
             .back-nav {
                 top: 6rem;
                 left: 1.5rem;
+            }
+
+            .filter-tabs-container {
+                padding: 1.5rem 1.5rem 1rem;
+            }
+
+            .filter-tabs {
+                gap: 0.75rem;
+            }
+
+            .filter-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
             }
         }
 
@@ -441,6 +569,38 @@
                 left: 1rem;
                 font-size: 0.85rem;
                 padding: 0.5rem 0.9rem;
+            }
+
+            .filter-tabs-container {
+                padding: 1.5rem 1rem 1rem;
+            }
+
+            .filter-tabs {
+                gap: 0.6rem;
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+                scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .filter-tabs::-webkit-scrollbar {
+                height: 4px;
+            }
+
+            .filter-tabs::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            .filter-tabs::-webkit-scrollbar-thumb {
+                background: var(--cyan);
+                border-radius: 2px;
+            }
+
+            .filter-btn {
+                padding: 0.55rem 1rem;
+                font-size: 0.8rem;
+                flex-shrink: 0;
             }
 
             .category-section {
@@ -540,6 +700,23 @@
                 padding: 0.45rem 0.8rem;
             }
 
+            .filter-tabs-container {
+                padding: 1.25rem 0.75rem 0.75rem;
+            }
+
+            .filter-tabs {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.5rem 0.9rem;
+                font-size: 0.75rem;
+            }
+
+            .filter-count {
+                font-size: 0.7rem;
+            }
+
             .category-section {
                 padding: 1.75rem 0.75rem;
             }
@@ -629,6 +806,28 @@
             </div>
         </header>
 
+        <!-- Filter Tabs -->
+        <div class="filter-tabs-container">
+            <div class="filter-tabs" id="filterTabs">
+                <button class="filter-btn active" data-filter="all">
+                    Semua Proyek
+                    <span class="filter-count">12</span>
+                </button>
+                <button class="filter-btn" data-filter="apps">
+                    Aplikasi & Sistem
+                    <span class="filter-count">4</span>
+                </button>
+                <button class="filter-btn" data-filter="web">
+                    Web & Bisnis
+                    <span class="filter-count">4</span>
+                </button>
+                <button class="filter-btn" data-filter="personal">
+                    Personal & Eksplorasi
+                    <span class="filter-count">4</span>
+                </button>
+            </div>
+        </div>
+
         <!-- Kategori Aplikasi & Sistem -->
         <section class="category-section">
             <div class="category-header reveal">
@@ -639,7 +838,7 @@
             </div>
             <div class="projects-grid">
 
-                <div class="project-card reveal">
+                <div class="project-card reveal" data-category="apps">
                     <div class="project-top">
                         <div class="project-icon"><i class="ri-macbook-line"></i></div>
                         <div class="project-links">
@@ -662,7 +861,7 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal">
+                <div class="project-card reveal" data-category="apps">
                     <div class="project-top">
                         <div class="project-icon"><i class="ri-database-2-line"></i></div>
                         <div class="project-links">
@@ -685,7 +884,7 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal">
+                <div class="project-card reveal" data-category="apps">
                     <div class="project-top">
                         <div class="project-icon"><i class="ri-restaurant-line"></i></div>
                         <div class="project-links">
@@ -709,7 +908,7 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal">
+                <div class="project-card reveal" data-category="apps">
                     <div class="project-top">
                         <div class="project-icon"><i class="ri-ticket-2-line"></i></div>
                         <div class="project-links">
@@ -745,7 +944,7 @@
             </div>
             <div class="projects-grid">
 
-                <div class="project-card reveal">
+                <div class="project-card reveal" data-category="web">
                     <div class="project-top">
                         <div class="project-icon"><i class="ri-store-2-line"></i></div>
                         <div class="project-links">
@@ -768,7 +967,7 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal">
+                <div class="project-card reveal" data-category="web">
                     <div class="project-top">
                         <div class="project-icon"><i class="ri-shopping-bag-3-line"></i></div>
                         <div class="project-links">
@@ -791,7 +990,7 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal">
+                <div class="project-card reveal" data-category="web">
                     <div class="project-top">
                         <div class="project-icon"><i class="ri-cup-line"></i></div>
                         <div class="project-links">
@@ -814,7 +1013,7 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal">
+                <div class="project-card reveal" data-category="web">
                     <div class="project-top">
                         <div class="project-icon"><i class="ri-book-read-line"></i></div>
                         <div class="project-links">
@@ -850,7 +1049,7 @@
             </div>
             <div class="projects-grid">
 
-                <div class="project-card reveal">
+                <div class="project-card reveal" data-category="personal">
                     <div class="project-top">
                         <div class="project-icon"><i class="ri-code-box-line"></i></div>
                         <div class="project-links">
@@ -873,7 +1072,7 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal">
+                <div class="project-card reveal" data-category="personal">
                     <div class="project-top">
                         <div class="project-icon"><i class="ri-book-open-line"></i></div>
                         <div class="project-links">
@@ -897,7 +1096,7 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal">
+                <div class="project-card reveal" data-category="personal">
                     <div class="project-top">
                         <div class="project-icon"><i class="ri-gift-line"></i></div>
                         <div class="project-links">
@@ -920,7 +1119,7 @@
                     </div>
                 </div>
 
-                <div class="project-card reveal">
+                <div class="project-card reveal" data-category="personal">
                     <div class="project-top">
                         <div class="project-icon"><i class="ri-html5-fill"></i></div>
                         <div class="project-links">
@@ -960,6 +1159,45 @@
             <p class="footer-sub">Mahasiswa Teknik Informatika · Fakultas Teknik · Universitas Negeri Surabaya</p>
         </div>
     </footer>
+
+    <!-- Filter Projects Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterTabs = document.getElementById('filterTabs');
+            const filterButtons = filterTabs.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('[data-category]');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const filterValue = this.getAttribute('data-filter');
+
+                    // Update active button state
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Filter project cards with smooth animation
+                    projectCards.forEach(card => {
+                        const cardCategory = card.getAttribute('data-category');
+                        const shouldShow = filterValue === 'all' || cardCategory === filterValue;
+
+                        if (shouldShow) {
+                            card.classList.remove('filter-hidden');
+                            card.removeAttribute('aria-hidden');
+                        } else {
+                            card.classList.add('filter-hidden');
+                            card.setAttribute('aria-hidden', 'true');
+                        }
+                    });
+                });
+            });
+
+            // Initialize: show all cards and reset filter state
+            projectCards.forEach(card => {
+                card.classList.remove('filter-hidden');
+                card.removeAttribute('aria-hidden');
+            });
+        });
+    </script>
 
     <script src="../script.js"></script>
 </body>
