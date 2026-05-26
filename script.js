@@ -152,26 +152,97 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ===== CONTACT FORM =====
-const form = document.getElementById('contactForm');
+// ===== CONTACT FORM VALIDATION & SUBMISSION =====
+const contactForm = document.getElementById('contactForm');
+const inputName = document.getElementById('inputName');
+const inputEmail = document.getElementById('inputEmail');
+const inputSubject = document.getElementById('inputSubject');
+const inputMessage = document.getElementById('inputMessage');
+const btnWhatsApp = document.getElementById('btnWhatsApp');
+const btnEmail = document.getElementById('btnEmail');
+const formError = document.getElementById('formError');
 const formSuccess = document.getElementById('formSuccess');
-if (form) {
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        const btn = document.getElementById('btnSubmit');
-        btn.innerHTML = '<i class="ri-loader-4-line"></i><span>Mengirim...</span>';
-        btn.disabled = true;
-        btn.style.opacity = '0.7';
-        setTimeout(() => {
-            form.reset();
-            btn.innerHTML = '<i class="ri-send-plane-2-line"></i><span>Kirim Pesan</span>';
-            btn.disabled = false;
-            btn.style.opacity = '1';
-            formSuccess.classList.add('show');
-            setTimeout(() => formSuccess.classList.remove('show'), 4000);
-        }, 1500);
+
+// Validate form fields
+function validateForm() {
+    let isValid = true;
+    formError.classList.remove('show');
+    document.querySelectorAll('.form-group').forEach(group => group.classList.remove('input-error'));
+
+    // Validate Name
+    if (!inputName.value.trim()) {
+        inputName.closest('.form-group').classList.add('input-error');
+        isValid = false;
+    }
+
+    // Validate Email
+    if (!inputEmail.value.trim() || !isValidEmail(inputEmail.value)) {
+        inputEmail.closest('.form-group').classList.add('input-error');
+        isValid = false;
+    }
+
+    // Validate Message
+    if (!inputMessage.value.trim()) {
+        inputMessage.closest('.form-group').classList.add('input-error');
+        isValid = false;
+    }
+
+    if (!isValid) {
+        formError.innerHTML = '<i class="ri-alert-line"></i> Silakan lengkapi semua field yang diperlukan.';
+        formError.classList.add('show');
+    }
+
+    return isValid;
+}
+
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// WhatsApp Button
+if (btnWhatsApp) {
+    btnWhatsApp.addEventListener('click', function() {
+        if (validateForm()) {
+            const name = inputName.value.trim();
+            const subject = inputSubject.value.trim();
+            const message = inputMessage.value.trim();
+            const phone = '6281945055565';
+
+            let waMessage = `Halo Qolbun, saya ${name}.\n\n`;
+            if (subject) waMessage += `Subjek: ${subject}\n\n`;
+            waMessage += message;
+
+            const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(waMessage)}`;
+            window.open(waUrl, '_blank');
+        }
     });
 }
+
+// Email Button
+if (btnEmail) {
+    btnEmail.addEventListener('click', function() {
+        if (validateForm()) {
+            const name = inputName.value.trim();
+            const email = inputEmail.value.trim();
+            const subject = inputSubject.value.trim() || 'Pesan dari Portfolio';
+            const message = inputMessage.value.trim();
+
+            const emailBody = `Nama: ${name}\nEmail: ${email}\n\nPesan:\n${message}`;
+            const mailtoUrl = `mailto:25051204442@mhs.unesa.ac.id?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            window.location.href = mailtoUrl;
+        }
+    });
+}
+
+// Clear error state on input
+[inputName, inputEmail, inputSubject, inputMessage].forEach(input => {
+    if (input) {
+        input.addEventListener('focus', function() {
+            this.closest('.form-group').classList.remove('input-error');
+        });
+    }
+});
 
 // ===== SMOOTH SCROLL =====
 document.querySelectorAll('a[href^="#"]').forEach(a => {
