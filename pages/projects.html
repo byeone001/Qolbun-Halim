@@ -383,24 +383,31 @@
             gap: 1rem;
             justify-content: center;
             align-items: center;
+            padding: 0.5rem 0.5rem 0.25rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 32px;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
         }
 
         .filter-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            padding: 0.65rem 1.5rem;
-            background: rgba(255, 255, 255, 0.03);
+            gap: 0.65rem;
+            min-width: 170px;
+            padding: 0.85rem 1.4rem;
+            background: rgba(255, 255, 255, 0.04);
             color: var(--text-muted);
-            border: 1.5px solid var(--glass-border);
-            border-radius: 50px;
+            border: 1.5px solid rgba(255, 255, 255, 0.08);
+            border-radius: 999px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.25s ease;
             font-family: var(--font-alt);
-            letter-spacing: 0.3px;
+            letter-spacing: 0.25px;
             position: relative;
             overflow: hidden;
             white-space: nowrap;
@@ -410,18 +417,18 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at top right, rgba(0, 217, 255, 0.08), transparent 70%);
+            background: radial-gradient(circle at top right, rgba(0, 217, 255, 0.12), transparent 65%);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.25s ease;
             z-index: -1;
             pointer-events: none;
         }
 
         .filter-btn:hover {
             color: var(--cyan);
-            border-color: rgba(0, 217, 255, 0.3);
-            background: rgba(255, 255, 255, 0.04);
-            transform: translateY(-2px);
+            border-color: rgba(0, 217, 255, 0.25);
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-1px);
         }
 
         .filter-btn:hover::before {
@@ -431,9 +438,9 @@
         .filter-btn.active {
             color: #fff;
             border-color: var(--cyan);
-            background: var(--cyan-dim);
-            box-shadow: 0 0 20px var(--cyan-glow);
-            transform: translateY(-3px) scale(1.05);
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.16), rgba(0, 217, 255, 0.08));
+            box-shadow: 0 0 18px rgba(0, 217, 255, 0.18);
+            transform: translateY(-1px);
         }
 
         .filter-btn.active::before {
@@ -444,17 +451,18 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 217, 255, 0.15);
-            padding: 0.15rem 0.6rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
+            min-width: 28px;
+            padding: 0.18rem 0.55rem;
+            background: rgba(0, 217, 255, 0.2);
+            border-radius: 999px;
+            font-size: 0.78rem;
             font-weight: 700;
             color: var(--cyan);
             margin-left: 0.3rem;
         }
 
         .filter-btn.active .filter-count {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.18);
             color: #fff;
         }
 
@@ -467,13 +475,17 @@
         .project-card.filter-hidden,
         .project-card.reveal.filter-hidden {
             opacity: 0 !important;
-            transform: scale(0.9) translateY(18px) !important;
+            transform: scale(0.92) translateY(18px) !important;
             pointer-events: none !important;
             visibility: hidden !important;
             height: 0 !important;
             margin: 0 !important;
             padding: 0 !important;
             overflow: hidden !important;
+        }
+
+        .category-section.filter-hidden {
+            display: none !important;
         }
 
         .projects-grid {
@@ -766,7 +778,7 @@
                 <li><a href="../index.html#education" class="nav-link">Pendidikan</a></li>
                 <li><a href="../index.html#contact" class="nav-link">Kontak</a></li>
                 <li><a href="projects.html" class="nav-link" id="navProjects"><i class="ri-folder-code-line"></i>
-                        Proyek</a></li>
+                        Project</a></li>
             </ul>
             <div class="hamburger" id="hamburger">
                 <span></span><span></span><span></span>
@@ -784,9 +796,9 @@
         </div>
 
         <header class="projects-header">
-            <a href="../index.html" class="back-nav fade-up">
+            <!-- <a href="../index.html" class="back-nav fade-up">
                 <i class="ri-arrow-left-line"></i> Kembali ke Beranda
-            </a>
+            </a> -->
 
             <h1 class="projects-title fade-up" style="animation-delay: 0.1s;">Arsip Proyek & Eksplorasi Kode</h1>
             <p class="projects-subtitle fade-up" style="animation-delay: 0.2s;">Kumpulan portofolio, aplikasi, dan
@@ -829,7 +841,7 @@
         </div>
 
         <!-- Kategori Aplikasi & Sistem -->
-        <section class="category-section">
+        <section class="category-section" data-filter-category="apps">
             <div class="category-header reveal">
                 <h2 class="category-title">
                     <i class="ri-window-fill"></i> Aplikasi & Sistem
@@ -935,7 +947,7 @@
         </section>
 
         <!-- Kategori Web & Bisnis -->
-        <section class="category-section">
+        <section class="category-section" data-filter-category="web">
             <div class="category-header reveal">
                 <h2 class="category-title">
                     <i class="ri-global-line"></i> Web & Bisnis
@@ -1040,7 +1052,7 @@
         </section>
 
         <!-- Kategori Personal & Eksplorasi -->
-        <section class="category-section">
+        <section class="category-section" data-filter-category="personal">
             <div class="category-header reveal">
                 <h2 class="category-title">
                     <i class="ri-user-star-line"></i> Personal & Eksplorasi
@@ -1149,9 +1161,9 @@
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="footer-inner">
-            <div class="footer-logo">
+            <!-- <div class="footer-logo">
                 <span class="logo-bracket">&lt;</span>QH<span class="logo-bracket">&gt;</span>
-            </div>
+            </div> -->
             <p class="footer-text">Copyright © 2026 Qolbun Halim Hidayatulloh.</p>
             <p class="footer-text">
                 All rights reserved.
@@ -1165,36 +1177,33 @@
         document.addEventListener('DOMContentLoaded', function () {
             const filterTabs = document.getElementById('filterTabs');
             const filterButtons = filterTabs.querySelectorAll('.filter-btn');
-            const projectCards = document.querySelectorAll('[data-category]');
+            const categorySections = document.querySelectorAll('.category-section[data-filter-category]');
 
             filterButtons.forEach(button => {
                 button.addEventListener('click', function () {
                     const filterValue = this.getAttribute('data-filter');
 
-                    // Update active button state
                     filterButtons.forEach(btn => btn.classList.remove('active'));
                     this.classList.add('active');
 
-                    // Filter project cards with smooth animation
-                    projectCards.forEach(card => {
-                        const cardCategory = card.getAttribute('data-category');
-                        const shouldShow = filterValue === 'all' || cardCategory === filterValue;
+                    categorySections.forEach(section => {
+                        const sectionCategory = section.getAttribute('data-filter-category');
+                        const shouldShow = filterValue === 'all' || sectionCategory === filterValue;
 
                         if (shouldShow) {
-                            card.classList.remove('filter-hidden');
-                            card.removeAttribute('aria-hidden');
+                            section.classList.remove('filter-hidden');
+                            section.removeAttribute('aria-hidden');
                         } else {
-                            card.classList.add('filter-hidden');
-                            card.setAttribute('aria-hidden', 'true');
+                            section.classList.add('filter-hidden');
+                            section.setAttribute('aria-hidden', 'true');
                         }
                     });
                 });
             });
 
-            // Initialize: show all cards and reset filter state
-            projectCards.forEach(card => {
-                card.classList.remove('filter-hidden');
-                card.removeAttribute('aria-hidden');
+            categorySections.forEach(section => {
+                section.classList.remove('filter-hidden');
+                section.removeAttribute('aria-hidden');
             });
         });
     </script>
