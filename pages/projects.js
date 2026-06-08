@@ -1,7 +1,3 @@
-/* projects.js — JavaScript for the Projects page
-   Shares the same interaction patterns as script.js
-   but is fully independent. DO NOT modify script.js. */
-
 // ===== PARTICLE CANVAS (same as homepage) =====
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
