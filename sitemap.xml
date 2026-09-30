@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Beranda -->
   <url>
     <loc>https://qolbunhalim.my.id/</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <!-- Halaman Projects -->
   <url>
     <loc>https://qolbunhalim.my.id/pages/projects.html</loc>
     <lastmod>2026-09-30</lastmod>
